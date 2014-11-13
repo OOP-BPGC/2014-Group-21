@@ -11,3 +11,5 @@ Vishnu Nair (CRC Cards, Use Cases) <br/> <br/>
 #Libraries Used
 - jUnit 3.8.1
 - EasyMock 2.5.1
+- Javax Mail
+- Joda Time 2.5
