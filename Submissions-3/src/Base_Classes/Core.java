@@ -7,7 +7,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-
+import tests.MessageBuilder;
 import com.google.gson.Gson;
 
 import Base_Classes.Project;
@@ -34,7 +34,7 @@ public class Core extends Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 	public void getProjectsTest(String s) {
 		File file1 = new File(s);
@@ -62,7 +62,7 @@ public class Core extends Person {
 		scan.close();
 		return;
 	}
-
+	
 	public void getProjects() {
 		File file1 = new File("projectdatabase.txt");
 		Scanner scan;
@@ -117,6 +117,9 @@ public class Core extends Person {
 		  }
 		  if (y==1){
 			  //pass finalmessage to message sender class
+			  String[] delim = finalmessage.split("@@@@");
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  MessageHelper.SendMessage(this, mess);
 			  System.out.println("Message has been sent");
 		  }
 		  else {
@@ -172,6 +175,9 @@ public class Core extends Person {
 		  }
 		  if (y==1){
 			  //pass finalmessage to message sender class
+			  String[] delim = finalmessage.split("@@@@");
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  MessageHelper.SendMessage(this, mess);
 			  System.out.println("Message has been sent");
 		  }
 		  else {
@@ -181,7 +187,7 @@ public class Core extends Person {
 		  
 		  
 	  }
-	  
+
  //REMOVE AFTER UNIT TESTING
 	  public void CreateMessageTest(String s, int i) {
 		  Message m = new Message();
@@ -219,7 +225,7 @@ public class Core extends Person {
 			  return;
 		  }
 	  }
-
+	  
 	  public void CreateMessage() {
 		  Message m = new Message();
 		  Scanner sc = new Scanner(System.in);
@@ -254,7 +260,9 @@ public class Core extends Person {
 			  y = m.addMessageToDatabase(this.desig,finalmessage); //Returns 1
 		  }
 		  if (y==1){
-			  //pass finalmessage to message sender class
+			  String[] delim = finalmessage.split("@@@@");
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  MessageHelper.SendMessage(this, mess);
 			  System.out.println("Message has been sent");
 		  }
 		  else {
@@ -351,17 +359,21 @@ public class Core extends Person {
 			System.out.println("Some problem with the userlist occured. Exiting.");
 			return;
 		}
+		String finalmessage = null;
 		if (flag != 0){
 			System.out.println("Duplicate entry found in userlist. Cannot create the member. Exiting...");
 			return;
 		}
 		else {
 			System.out.println("No matches found in userlist. Creating new user....");
-			newmessage = "CREATEUSER@@@@" + "VEGAS@SAVEG" + newmessage;
+			finalmessage = "CREATEUSER@@@@" + "VEGAS@SAVEG" + newmessage;
 		}
 		/*
-		 * PASS THIS TO GET BROADCASTED
+		 * PASS THIS TO GET BROADCASTED. Making a message object.
 		 */
+		  String[] delim = finalmessage.split("@@@@");
+		  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+		  MessageHelper.SendMessage(this, mess);
 	}
 
 	
