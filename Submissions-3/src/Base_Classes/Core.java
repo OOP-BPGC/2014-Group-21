@@ -35,6 +35,34 @@ public class Core extends Person {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	public void getProjectsTest(String s) {
+		File file1 = new File(s);
+		Scanner scan;
+		try {
+			scan = new Scanner(file1);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Some error happened in reading the database...Exiting.");
+			return;
+		}
+		String copied = "";
+		String pname = "";
+		String phead = "";
+		String[] splitstrings;
+		int i =1;
+		System.out.println("\t  Project Name\t\tProject Head");
+		while (scan.hasNextLine()){
+			copied = scan.nextLine();
+			splitstrings = copied.split("@@@@");
+			pname = splitstrings[1];
+			phead = splitstrings[2];
+			System.out.println("\t"+(i++)+". "+pname+"\t    "+phead);
+		}
+		scan.close();
+		return;
+	}
+
 	public void getProjects() {
 		File file1 = new File("projectdatabase.txt");
 		Scanner scan;
@@ -154,6 +182,44 @@ public class Core extends Person {
 		  
 	  }
 	  
+ //REMOVE AFTER UNIT TESTING
+	  public void CreateMessageTest(String s, int i) {
+		  Message m = new Message();
+		  Scanner sc = new Scanner(System.in);
+		  
+		  
+		  m.setBody(s);
+/*		  System.out.println("Enter the reciepients (Seperated by a comma)");
+		  s = sc.nextLine();
+		  String[] s1 = s.split(",");
+		  m.setTo(s1);
+*/		 
+		  m.setFrom(this.Name);
+		  DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		  Date date = new Date();
+		  m.setDate(dateFormat.format(date).toString());
+		  
+		  	  
+		  m.setMin_Privilege_Level(i);
+		  String finalmessage = m.encodeMsg(m);
+		  int y = 42;
+		  if(finalmessage == null){
+			  System.out.println("SOME ERROR OCCURED, TRY AGAIN");
+			  return;
+		  }
+		  else{
+			  y = m.addMessageToDatabaseTEST(this.desig,finalmessage); //Returns 1
+		  }
+		  if (y==1){
+			  //pass finalmessage to message sender class
+			  System.out.println("Message has been sent");
+		  }
+		  else {
+			  System.out.println("SOME ERROR OCCURED, TRY AGAIN");
+			  return;
+		  }
+	  }
+
 	  public void CreateMessage() {
 		  Message m = new Message();
 		  Scanner sc = new Scanner(System.in);
