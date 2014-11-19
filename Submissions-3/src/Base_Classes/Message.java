@@ -84,19 +84,50 @@ public String encodeMsg(Message m) {
 	// MESSAGE@@@@<SENDER'S NAME>@@@@<JSON>@@@@<MIN_PRIVILEGE_LEVEL  --> BLEH
 }
 
-/// INCOMPLETE METHOD
 public void decodeMsg(String jstring, Core p){
 	Message m = decodeJson(jstring);
 	String mTag = m.Tag;
 	String mBody = m.Body;
 	switch(mTag){
-		case "MESSAGE"		: p.addMessages(mBody)	;break;
-		case "PROJECT"		: p.addProject(mBody)	;break;
-		case "EVENT"		: p.addEvents(mBody)	;break;
-		case "PERSONFILE"	: p.addUser(mBody)		;break;
-		case "
+		case "MESSAGE"		: p.addMessages(mBody)		;break;
+		case "PROJECT"		: p.addProject(mBody)		;break;
+		case "EVENT"		: p.addEvents(mBody)		;break;
+		case "PERSONFILE"	: p.addUser(mBody)			;break;
+		case "ACCEPTED"		: p.updateVolunteer(mBody);	;break;
+		default 			: break;
 	}
 }
+
+public void decodeMsg(String jstring, ProjectHead p){
+	Message m = decodeJson(jstring);
+	String mTag = m.Tag;
+	String mBody = m.Body;
+	switch(mTag){
+		case "MESSAGE"		: p.addMessages(mBody)		;break;
+		case "PROJECT"		: p.addProject(mBody)		;break;
+		case "EVENT"		: p.addEvents(mBody)		;break;
+		case "PERSONFILE"	: p.addUser(mBody)			;break;
+		case "ACCEPTED"		: p.updateVolunteer(mBody)	;break;
+		case "PROJREQ"		: p.addVolunteerProjectRequests(mBody) ;break; 
+		default				: break;
+	}
+}
+
+public void decodeMsg(String jstring, Volunteer p){
+	Message m = decodeJson(jstring);
+	String mTag = m.Tag;
+	String mBody = m.Body;
+	switch(mTag){
+		case "MESSAGE"		: p.addMessages(mBody)		;break;
+		case "PROJECT"		: p.addProject(mBody)		;break;
+		case "EVENT"		: p.addEvents(mBody)		;break;
+		case "PERSONFILE"	: p.addUser(mBody)			;break;
+		case "ACCEPTED"		: p.updateVolunteer(mBody);	;break;
+		default 			: break;
+	}
+}
+
+
 
 public int addMessageToDatabase(Designation x,String finalmessage) {
 	if (x == Designation.CORE){
