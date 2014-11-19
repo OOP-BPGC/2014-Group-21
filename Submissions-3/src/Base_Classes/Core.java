@@ -7,50 +7,70 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+
+import com.google.gson.Gson;
+
 import Base_Classes.Project;
 
 public class Core extends Person {
 
 
-	  public final Designation desig = Designation.CORE;
+	  public static final Designation desig = Designation.CORE;
 	  public int NumberOfMembers;
+	  
+	  public final int PRIVILEGELEVEL = 3;
+	 
+	public int getPRIVILEGELEVEL() {
+		return PRIVILEGELEVEL;
+	}
 
-	  public void ModifyMember() {
-	  }
+	public Core(String name, String iDNumber, Designation designation,
+			String phoneNumber, int numberOfMembers,String[] credentials) {
+		super(name, iDNumber, designation, phoneNumber,credentials );
+		NumberOfMembers = numberOfMembers;
+	}
 
-	  public void getProjects() {
-			File file1 = new File("coreprojectdatabase.txt");
-			Scanner scan;
-			try {
-				scan = new Scanner(file1);
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Some error happened in reading the database...Exiting.");
-				return;
-			}
-			String copied = "";
-			String pname = "";
-			String phead = "";
-			String[] splitstrings;
-			int i =1;
-			System.out.println("\t  Project Name\t\tProject Head");
-			while (scan.hasNextLine()){
-				copied = scan.nextLine();
-				splitstrings = copied.split("@@@@");
-				pname = splitstrings[1];
-				phead = splitstrings[2];
-				System.out.println("\t"+(i++)+". "+pname+"\t    "+phead);
-			}
-			scan.close();
+	public Core() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void getProjects() {
+		File file1 = new File("projectdatabase.txt");
+		Scanner scan;
+		try {
+			scan = new Scanner(file1);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Some error happened in reading the database...Exiting.");
 			return;
 		}
-	  
+		String copied = "";
+		String pname = "";
+		String phead = "";
+		String[] splitstrings;
+		int i =1;
+		System.out.println("\t  Project Name\t\tProject Head");
+		while (scan.hasNextLine()){
+			copied = scan.nextLine();
+			splitstrings = copied.split("@@@@");
+			pname = splitstrings[1];
+			phead = splitstrings[2];
+			System.out.println("\t"+(i++)+". "+pname+"\t    "+phead);
+		}
+		scan.close();
+		return;
+	}
+	
+	public void ModifyMember() {
+	  }
+
 	  public void CreateEvent() {
 		  Scanner in = new Scanner(System.in);
 		  Event event = new Event();
 		  System.out.println("Enter event name: ");
 		  event.setName(in.nextLine());
-		  event.setContactNumber(Integer.toString(this.PhoneNumber));
+		  event.setContactNumber(this.PhoneNumber);
 		  System.out.println("Enter event date: ");  
 		  event.setDate(in.nextLine());
 		  System.out.println("Enter event location: ");
@@ -65,7 +85,7 @@ public class Core extends Person {
 			  return;
 		  }
 		  else{
-			  y = event.addEventToDatabases(this.desig,finalmessage);
+			  y = event.addEventToDatabases(this.desig, finalmessage);
 		  }
 		  if (y==1){
 			  //pass finalmessage to message sender class
@@ -85,7 +105,7 @@ public class Core extends Person {
 		  String schedule = sc.nextLine();
 //		  System.out.printf("Do you want to assign Project Head? (Y for yes and N for No) : ");
 		  System.out.printf("Enter the name of the Project Manager");
-		  String proj_head;
+		  String proj_head; // Need to check with the database
 		  proj_head = sc.nextLine();
 /*		  while (1 == 1){
 			  char dec = sc.next().trim().charAt(0);
@@ -103,7 +123,7 @@ public class Core extends Person {
 		  }
 */		  
 		  int numvolunteers;
-		  while(true){
+		  while(1==1){
 			  System.out.printf("Enter the number of volunteers (min = 1, max = 10 :");
 			  numvolunteers = sc.nextInt();
 			  if (numvolunteers < 10 && numvolunteers > 0){
@@ -165,7 +185,7 @@ public class Core extends Person {
 			  return;
 		  }
 		  else{
-			  y = m.addMessageToDatabase(this.desig, finalmessage); //Returns 1
+			  y = m.addMessageToDatabase(this.desig,finalmessage); //Returns 1
 		  }
 		  if (y==1){
 			  //pass finalmessage to message sender class
@@ -176,31 +196,107 @@ public class Core extends Person {
 			  return;
 		  }
 	  }
-	  public void BroadcastMessage() {
+	/*  
+	  public void  manageEvent(){
+		  System.out.println("Enter the name of the event that you want to manage.");
+		  Scanner sc = new Scanner(System.in);
+		  String str = sc.nextLine();
+		  File file1 = new File("coreeventlist.txt");
+		  Scanner scan2 = new Scanner(file1);
+		  String stringtemp = "";
+		  int flag = 0;
+		  PrintWriter f = new PrintWriter("tempcoreeventlist.txt");
+		  while(scan2.hasNextLine()){
+			  stringtemp = scan2.nextLine();
+			  String[] splitstream = stringtemp.split("@@@@");
+			  if (splitstream[3].contains(str)){
+				  
+				  flag = 1;
+			  }
+		  }
+		  
 	  }
+	*/  
 	  
-	  public int appendToDatabase(String filename, String stringtoappend){
-		  try {
-				File file1 = new File(filename+".txt");
-				Scanner in = new Scanner(file1);
-				PrintWriter f = new PrintWriter("temp"+filename+".txt");
-				String op = "";
-				while (in.hasNextLine()){
-					op = in.nextLine();
-					f.println(op);
-				}
-				f.println(stringtoappend);
-				f.close();
-				in.close();
-				File file2 = new File("tempcoreprojlist.txt");
-				file1.delete();
-				file2.renameTo(file1);
-			} catch (FileNotFoundException e) {
-				return 0;
+	public void addMessages (String message){
+		/*
+		 * MIGHT WANT TO KEEP THIS AS AN INT
+		 */
+		String [] splitmessage = message.split("@@@@");
+		if ( Integer.valueOf(splitmessage[3]) <= this.PRIVILEGELEVEL){
+			this.appendToDatabase("messagedatabase", message);	
+		}
+	}
+
+	public void BroadcastMessage() {
+	
+	}
+
+	public void CreateUser() {
+		// TODO to create a new user
+		String newmessage;
+		Scanner scan = new Scanner(System.in);
+		Gson gson = new Gson();
+		String JString, type;
+		String stringinput;
+		System.out.println("Enter the type of user: \n1. Volunteer \n2. Project Head\nPress any other number to EXIT");
+		int intinput = scan.nextInt();
+		if (intinput != 1 && intinput != 2){
+			System.out.println("Exiting now...\n");
+			return;
+		}
+		else {
+			System.out.println("Enter the name : ");
+			String name = scan.nextLine();
+			System.out.println("Enter the ID Number : ");
+			String ID = scan.nextLine();
+			System.out.println("Enter the Phone Number : ");
+			String phNo = scan.nextLine();
+			System.out.println("Enter the username : ");
+			String usrnm = scan.nextLine();
+			System.out.println("Enter the password : ");
+			String pswrd = scan.nextLine();
+			String[] cred = new String[]{usrnm,pswrd};
+			if (intinput == 1){
+				Volunteer a = new Volunteer(name, ID, Designation.VOLUNTEER, phNo, "_", cred);
+				JString = gson.toJson(a);
+				type = "VOL";
 			}
-			return 1;
-	  }
-	  
+			else{
+				ProjectHead a = new ProjectHead(name, ID, Designation.PROJECT_HEAD,phNo,"_",cred);
+				JString = gson.toJson(a);
+				type = "PH";
+			}
+			newmessage = "PERSONFILE@@@@" + name + "@@@@" + JString + "@@@@" + type;
+		}
+		// NOW WE SEARCH FOR DUPLICATE ELEMENTS
+		int flag;
+		try {
+			File file = new File("userlist.txt");
+			Scanner checker = new Scanner(file);
+			flag = 0;
+			while (checker.hasNextLine()){
+				if (checker.nextLine() == newmessage){
+					flag++;
+				}
+			}
+			checker.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Some problem with the userlist occured. Exiting.");
+			return;
+		}
+		if (flag != 0){
+			System.out.println("Duplicate entry found in userlist. Cannot create the member. Exiting...");
+			return;
+		}
+		else {
+			System.out.println("No matches found in userlist. Creating new user....");
+			newmessage = "CREATEUSER@@@@" + "VEGAS@SAVEG" + newmessage;
+		}
+		/*
+		 * PASS THIS TO GET BROADCASTED
+		 */
+	}
 
 	
 

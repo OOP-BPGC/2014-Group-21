@@ -1,5 +1,9 @@
 package Base_Classes;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.Vector;
 
 import com.google.gson.Gson;
@@ -12,7 +16,7 @@ public class Project {
 
   private String ProjectHead;
 
-  public int numOfVolunteers;   // CHANGE MADE FROM STRING TO int
+  public int numOfVolunteers;   // CHANGE MADE FROM STRING TO int  // want to delete it.
 
   public String EventName;
 
@@ -81,22 +85,27 @@ public class Project {
 	public void SetEvent() {
 	}
 	
-	public int updateProjectDatabases(){  //HERE WE WRITE TO THE DATABASE
-		return 0;
-	}
+
 	public String encodeProject() {
-	
+		String finalmessage;
+		String tag1 = "PROJECT";
+		String del = "@@@@";
+		String tag2 = this.Name;
+		String tag3 = this.ProjectHead;
 		Gson gson = new Gson();
-		String jsonString = gson.toJson(this);
-		
-		return jsonString;
+		String gsonfile = gson.toJson(this);
+		finalmessage = tag1+del+tag3+del+tag2+del+gsonfile;
+		return finalmessage;
 	}
 	public int addProjectToDatabase(Designation x,String finalmessage) {
 		// TODO Auto-generated method stub
 		if (x == Designation.CORE){
 			Core tempCore = new Core();
-			return tempCore.appendToDatabase("coreprojectdatabase", finalmessage);
+			return tempCore.appendToDatabase("projectdatabase", finalmessage);
 		}
+//		else if (x == this.desig){
+			
+//		}
 		else return 0;
 	}
 

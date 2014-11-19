@@ -1,6 +1,6 @@
 package Base_Classes;
 
-import java.util.Vector;
+
 
 import com.google.gson.Gson;
 
@@ -16,18 +16,21 @@ public class Event {
 
   public String ContactNumber;
   
-  
-  /*
-    public Vector  myMessage;   // IS THIS VECTOR EVEN REQUIRED???
- 
- 	*/  
-  
   /*
    * 
    * SETTERS AND GETTERS
    */
-  public Event() { };
   
+  
+  public Event() {
+	super();
+	// TODO Auto-generated constructor stub
+  }
+
+  public String getContactNumber() {
+	return ContactNumber;
+  }
+
   public Event(String name, String location, String date, String organiser,
 		String contactNumber) {
 	super();
@@ -38,11 +41,7 @@ public class Event {
 	ContactNumber = contactNumber;
 }
 
-public String getContactNumber() {
-	return ContactNumber;
-  }
-
-  public String getName() {
+public String getName() {
 	return Name;
 }
 
@@ -89,15 +88,13 @@ public String encodeEvent() {
 	finalmessage = tag1+del+tag2+del+tag4+del+gsonfile;
 	return finalmessage;
 }
-
-
+/// CHANGE MADE HERE...CORE TO GENERAL???
 public int addEventToDatabases(Designation x, String finalmessage) {
 	if (x == Designation.CORE){
 		Core tempCore = new Core();
-		return tempCore.appendToDatabase("coreeventdatabase", finalmessage);
+		return tempCore.appendToDatabase("eventdatabase", finalmessage);
 	}
 	else return 0;
 }
-
 
 }
