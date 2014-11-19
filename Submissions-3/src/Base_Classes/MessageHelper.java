@@ -26,7 +26,7 @@ public class MessageHelper {
 				user = sender.getCredentials()[0];
 				pwd = sender.getCredentials()[1];
 				// Subject will be set to current date by the class that uses it
-				GmailUtilities.sendEmail(m.getFrom(),"oopnirmaan@gmail.com", new Date().toString(), m.encodeMsg(m), user, pwd);
+				GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
 			}
 	}
 	
@@ -41,7 +41,7 @@ public class MessageHelper {
 			String[] mbodys = gmail.printRecentMessages(Days.daysBetween(new DateTime(updateDate), new DateTime(new Date())).getDays());
 			for(int i=0;i<mbodys.length;i++){
 				Message m = new Message();
-				m.decodeMsg(mbodys[i]);
+				m.decodeJson(mbodys[i]);
 				ret.add(m);
 			}
 			return (Message[]) ret.toArray();
