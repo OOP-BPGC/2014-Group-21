@@ -14,21 +14,23 @@ A. COMPLETED CLASSES AND UNIT TESTS :
 		c. Event
 		d. Person
 		e. Driver (Contains the main files and the basic UI)
+		f. Project
+		g. ProjectHead
+		h. GmailUtilities
+		i. Builder classes fpr Message, Core, Person
+		j. Volunteer
+
 	2. UNIT TESTS
 		a. Event
 		b. Message
 		c. Person
-
+		d. Core
+		e. Driver
 
 B. INCOMPLETE CLASSES AND UNIT TESTS :
-	1. CLASSES
-		a. Volunteer
-		b. ProjectHead
-		c. Project
+
 	2. UNIT TESTS
-		a. Core
-		b. ProjectHead
-		c. Volunteer
-		d. Driver
-		e. Project
+		a. ProjectHead
+		b. Volunteer
+		c. Project
 		
