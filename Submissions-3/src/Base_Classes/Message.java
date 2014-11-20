@@ -154,8 +154,14 @@ public int addMessageToDatabase(Designation x,String finalmessage) {
 	}
 	else return 0;
 }
-  
-  
+ // REMOVE AFTER UNIT TESTING 
+public int addMessageToDatabaseTEST(Designation x,String finalmessage) {
+	if (x == Designation.CORE){
+		Core tempCore = new Core();
+		return tempCore.appendToDatabase("messagedatabasetest", finalmessage);
+	}
+	else return 0;
+}  
   
   
 }

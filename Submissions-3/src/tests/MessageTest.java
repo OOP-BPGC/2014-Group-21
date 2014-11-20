@@ -2,6 +2,8 @@ package tests;
 
 import java.util.Arrays;
 import com.google.gson.Gson;
+
+import Base_Classes.Core;
 import Base_Classes.Message;
 import junit.framework.TestCase;
 
@@ -16,26 +18,20 @@ public class MessageTest extends TestCase{
 		assertEquals("StringTest",new MessageBuilder()
 										.date("StringTest")
 										.buildMessage()
-										.getDate());
+										.Date);
 	}
 	
 	
 	
 	public void testIntFields(){
-		assertEquals(1,new MessageBuilder()
+		assertEquals(1,(int)new MessageBuilder()
 		.minPrivLevel(1)
 		.buildMessage()
-		.getMinPrivilege());
+		.Min_Privilege_Level);
 		
 	}
 	
-	public void testStringArrayFields(){
-		String[] a = new String[]{"String1","String2"};
-		assertTrue(Arrays.equals(a,new MessageBuilder()
-							.projRestr(a)
-							.buildMessage()
-							.getspecifiedProjects()));
-	}
+
 	
 	public void testEncodeMsg(){
 		Gson gson = new Gson();
@@ -47,13 +43,17 @@ public class MessageTest extends TestCase{
 		assertEquals(jsonstr,m.encodeMsg(m));
 	}
 	
-	public void testDecodeMsg(){
+	public void testDecodeJSON(){
 		Gson gson = new Gson();
 		Message m = new MessageBuilder()
 		  .body("Hello")
 		  .date("Test")
 		  .projRestr(new String[]{"a","b"}).buildMessage();
 		String jsonstr = gson.toJson(m);
-		assertEquals(jsonstr,gson.toJson(m.decodeMsg(jsonstr)));
+		Core p = new Core();
+		m.decodeMsg(jsonstr, p);
+		
+		assertEquals(jsonstr,gson.toJson(m.decodeJson(jsonstr)));
 	}
+	
 }

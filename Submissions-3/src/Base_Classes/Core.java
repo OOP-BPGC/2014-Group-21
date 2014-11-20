@@ -34,7 +34,6 @@ public class Core extends Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	
 	public void getProjectsTest(String s) {
 		File file1 = new File(s);
