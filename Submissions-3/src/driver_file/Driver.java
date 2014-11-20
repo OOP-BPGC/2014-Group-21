@@ -7,7 +7,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import tests.MessageBuilder;
 import Base_Classes.*;
+
 import com.google.gson.Gson;
 
 public class Driver {
@@ -22,6 +25,7 @@ public class Driver {
 		String type = ""; // THE TYPE WILL BE "CORE" for core, "PH" for projecthead, and "VOL" for volunteer 
 		int flag = 0;
 		int tries = 1;
+		String oldDataFile = null;
 		do {
 			Scanner inputs = new Scanner(System.in);
 			String name = ""; String usrnm = ""; String pswrd = "";
@@ -40,6 +44,7 @@ public class Driver {
 				String op = "";
 				while (in.hasNextLine()){
 					op = in.nextLine();
+					oldDataFile = op;
 					String splits[] = op.split("@@@@");
 					if (splits[1].equals(name)){
 						System.out.println("Name found. Searching for credentials...");
@@ -86,19 +91,35 @@ public class Driver {
 		if (type == "CORE") {
 			Core a = gson.fromJson(JString, Core.class);			
 			CoreMenu(a);
+			String finalmessage = getNewData(oldDataFile, a);
+			String[] delim = finalmessage.split("@@@@");
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			MessageHelper.SendMessage(a, mess);
+			Person.ReplaceInDatabase("userlist", finalmessage, oldDataFile);
 		}
 		else if (type == "PH") {
 			ProjectHead a = gson.fromJson(JString, ProjectHead.class);		
 			PHMenu(a);
+			String finalmessage = getNewData(oldDataFile, a);
+			String[] delim = finalmessage.split("@@@@");
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			MessageHelper.SendMessage(a, mess);
+			Person.ReplaceInDatabase("userlist", finalmessage, oldDataFile);
 		}
 		else if (type == "VOL"){
 			Volunteer a = gson.fromJson(JString, Volunteer.class);		
 			VolunteerMenu(a);
+			String finalmessage = getNewData(oldDataFile, a);
+			String[] delim = finalmessage.split("@@@@");
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			MessageHelper.SendMessage(a, mess);
+			Person.ReplaceInDatabase("userlist", finalmessage, oldDataFile);
 		}
 		
 		else{
 			System.out.println("Some problem occured with the software. Please" +
 					" get the installation and database files checked.");
+			return;
 		}
 		return;
 	}
@@ -109,23 +130,26 @@ public class Driver {
 		int choice;
 		if (volunteer.hasProject == false) {
 			while(loop) {
-				System.out.println("\n1. List Projects\n2. Exit");
+				System.out.println("\n1. List Projects\n2. Check Messaes\n3. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
 					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
-					case 2: loop = false; break;
+					case 2: volunteer.listMessages(); break;  //DONE
+					case 3: loop = false; break;
 					default: System.out.println("Invalid Selection.");
 				}
 			}
 		}
 		else {
 			while(loop) {
-				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Exit");
+				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messaes\n4. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
-					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break; 
-					case 2: volunteer.getCurrentProject(); break;	
-					case 3: loop = false; break;
+					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
+					case 2: System.out.println("Your current project is : "+volunteer.getCurrentProject()); 
+							break;
+					case 3: volunteer.listMessages(); break;  //DONE
+					case 4: loop = false; break;
 					default: System.out.println("Invalid Selection.");
 				}
 			}
@@ -137,15 +161,15 @@ public class Driver {
 		scan = new Scanner(System.in);
 		int choice;
 		while(loop) {
-			System.out.println("\n1.Approve Volunteer Request(s)\n2. List Projects\n3. Current Project Details\n4. Manage Project\n5. Schedule Event\n6. Exit");
+			System.out.println("\n1.Approve Volunteer Request(s)\n2. List Projects\n3. Current Project Details\n4. Check Messages \n5. Exit");
 			choice = scan.nextInt();
 			switch (choice) {
 				case 1: projectHead.VolunteerProjectRequest(); break;
 				case 2: projectHead.getProjects(projectHead.desig, "projectlist"); break; //DONE
 				case 3: projectHead.getProjectName(); break; //Need details apart from name
-				case 4: projectHead.ManageProject(); break;
-				case 5: projectHead.ManageEvent(); break;
-				case 6: loop = false; break;
+				case 4: projectHead.listMessages(); break;
+//				case 5: projectHead.ManageEvent(); break;
+				case 5: loop = false; break;
 				default: System.out.println("Invalid Selection.");
 			}
 		}
@@ -156,7 +180,7 @@ public class Driver {
 		scan = new Scanner(System.in);
 		int choice;
 		while(loop) {
-			System.out.println("\n1. List Projects\n2. Create Project\n3. Create a new Project\n4. Schedule Event\n5. Create Member\n 6. Exit");
+			System.out.println("\n1. List Projects\n2. Create Project\n3. Create a new Project\n4. Schedule Event\n5. Create Member\n5. Check Messages\n6. Exit");
 			choice = scan.nextInt();
 			switch (choice) {
 				case 1: core.getProjects(); break; //DONE
@@ -164,9 +188,48 @@ public class Driver {
 				case 3: core.CreateMessage(); break; // DONE
 				case 4: core.CreateEvent(); break;  // DONE
 				case 5: core.CreateUser(); break;  //DONE
-				case 6:  loop = false; break; 
+				case 6: core.listMessages(); break;  //DONE
+				case 7: loop = false; break; 
 				default: System.out.println("Invalid Selection.");
 			}
 		}
-		}
+	}
+	public static String getNewData(String oldDataFile, Volunteer a){
+		/*
+		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
+		 */
+		if (oldDataFile == null) return null;
+		Gson gson2 = new Gson();
+		String newJson = gson2.toJson(a);
+		String [] newSplit = oldDataFile.split("@@@@");
+		String newDataFile = newSplit[0]+"@@@@"+newSplit[1]+"@@@@"+newJson+"@@@@"+newSplit[3];
+		return newDataFile;
+		
+	}
+	
+	public static String getNewData(String oldDataFile, ProjectHead a){
+		/*
+		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
+		 */
+		if (oldDataFile == null) return null;
+		Gson gson2 = new Gson();
+		String newJson = gson2.toJson(a);
+		String [] newSplit = oldDataFile.split("@@@@");
+		String newDataFile = newSplit[0]+"@@@@"+newSplit[1]+"@@@@"+newJson+"@@@@"+newSplit[3];
+		return newDataFile;
+		
+	}
+	
+	public static String getNewData(String oldDataFile, Core a){
+		/*
+		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
+		 */
+		if (oldDataFile == null) return null;
+		Gson gson2 = new Gson();
+		String newJson = gson2.toJson(a);
+		String [] newSplit = oldDataFile.split("@@@@");
+		String newDataFile = newSplit[0]+"@@@@"+newSplit[1]+"@@@@"+newJson+"@@@@"+newSplit[3];
+		return newDataFile;
+		
+	}
 }

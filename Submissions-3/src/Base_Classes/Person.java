@@ -150,8 +150,6 @@ public class Person {
 	
 	public int appendToDatabase(String filename, String stringtoappend){
 		
-		//tempcore_db for core
-		//norma db for else
 		  try {
 				File file1 = new File(filename+".txt");
 				Scanner in = new Scanner(file1);
@@ -159,6 +157,9 @@ public class Person {
 				String op = "";
 				while (in.hasNextLine()){
 					op = in.nextLine();
+					if (op.contains(stringtoappend)){
+						continue;
+					}
 					f.println(op);
 				}
 				f.println(stringtoappend);
@@ -301,6 +302,31 @@ public class Person {
 			}
 		}
 		
-		
-
-	}
+		public static int ReplaceInDatabase(String filename, String stringtoappend, String stringtoreplace){
+			
+			try {
+				File file1 = new File(filename+".txt");
+				Scanner in = new Scanner(file1);
+				PrintWriter f = new PrintWriter("temp"+filename+".txt");
+				String op = "";
+				while (in.hasNextLine()){
+					op = in.nextLine();
+					if (op.contains(stringtoreplace)) {
+						continue;
+					}
+					f.println(op);
+				}
+				f.println(stringtoappend);
+				f.close();
+				in.close();
+				File file2 = new File("temp"+filename+".txt");
+				file1.delete();
+				file2.renameTo(file1);
+				file2.delete();
+				} catch (FileNotFoundException e) {
+					System.out.println("Error occured while replacing String.");
+				return 0;
+			}
+			return 1;
+		}
+}
