@@ -31,6 +31,21 @@ public class Message {
 	Min_Privilege_Level = min_Privilege_Level;
   }
 
+  
+  /*
+   * 
+   * ADDED CONSTRUCToR FOR MESSAGE BUILDER
+   */
+public Message(String date2, String body2, String from2,
+		Integer min_Privilege_Level2, String[] proj_restr) {
+	// TODO Auto-generated constructor stub
+	super();
+	Date = date2;
+	Body = body2;
+	From = from2;
+	Min_Privilege_Level = min_Privilege_Level2;
+}
+
 public void setDate(String date) {
 	Date = date;
 }
