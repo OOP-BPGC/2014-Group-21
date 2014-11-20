@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 import org.apache.commons.io.FileUtils;
 
+import tests.MessageBuilder;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -136,6 +138,11 @@ public class Person {
 					/*
 					 * Pass the final message to the message class. 
 					 */
+					String[] delim = finalmessage.split("@@@@");
+					Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+					MessageHelper.SendMessage(this, mess);
+					System.out.println("Project request sent....");
+
 				}
 			}
 		}
@@ -210,7 +217,7 @@ public class Person {
 					PrintWriter f = new PrintWriter("file55.txt");
 					int i = 0;
 					String s = "_";
-					String s1= "Neeraj Ingle";
+//					String s1= "Neeraj Ingle";
 //		    	System.out.println("LELLO");
 					while(in.hasNextLine()){
 						op = in.nextLine();
@@ -244,6 +251,56 @@ public class Person {
 				
 			}
 		}
+		
+		public void listMessages(){
+			int input = -1;
+			do {
+			System.out.println("Enter the number of previous messages that you want to see (Only positive numbers allowed.). Enter 0 to exit.");
+			Scanner scan = new Scanner(System.in);
+			input = scan.nextInt();
+			if (input == 0){
+				System.out.println("You have pressed zero. Exiting to main screen.");
+				return;
+			}
+			} while (input < 1);
+				
+			List<String> messagelist = new ArrayList<String>();
+			try {
+				File file = new File ("mtest.txt");
+				Scanner in = new Scanner(file);
+				String op;
+				String[] splitmessage;
+				int x = 0;
+				while(in.hasNextLine()){
+					op = in.nextLine();
+					splitmessage = op.split("@@@@");
+					messagelist.add(splitmessage[2]);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Problem in database. Exiting.");
+			}
+			Gson gson = new Gson();
+			Message  mess;
+			String jstring;
+			int size = messagelist.size();
+			int j = 1;
+			if (size >= 0 && input < size){
+				for (int i = input; i>0; i--){
+				jstring = messagelist.get(size-i);
+				mess = gson.fromJson(jstring, Message.class);
+				System.out.println(j++ + ".\tMessage from : "+ mess.From+"\n\tSent on : "+mess.Date+"\n\tMessage body :"+mess.Body+"\n");
+				}
+			}
+			else {
+				for (int i = size -1; i>=0; i--){
+					jstring = messagelist.get(i);
+					mess = gson.fromJson(jstring, Message.class);
+					System.out.println(j++ + "\tMessage from : "+ mess.From+"\n\tSent on : "+mess.Date+"\n\tMessage body :"+mess.Body+"\n");
+				}
+			}
+		}
+		
 		
 
 	}
