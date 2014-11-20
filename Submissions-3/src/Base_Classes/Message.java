@@ -109,6 +109,7 @@ public void decodeMsg(String jstring, Core p){
 		case "EVENT"		: p.addEvents(mBody)		;break;
 		case "PERSONFILE"	: p.addUser(mBody)			;break;
 		case "ACCEPTED"		: p.updateVolunteer(mBody);	;break;
+		case "MODUSER"		: p.updateUserData(mBody);	;break;
 		default 			: break;
 	}
 }
@@ -123,6 +124,7 @@ public void decodeMsg(String jstring, ProjectHead p){
 		case "EVENT"		: p.addEvents(mBody)		;break;
 		case "PERSONFILE"	: p.addUser(mBody)			;break;
 		case "ACCEPTED"		: p.updateVolunteer(mBody)	;break;
+		case "MODUSER"		: p.updateUserData(mBody);	;break;
 		case "PROJREQ"		: p.addVolunteerProjectRequests(mBody) ;break; 
 		default				: break;
 	}
@@ -138,6 +140,7 @@ public void decodeMsg(String jstring, Volunteer p){
 		case "EVENT"		: p.addEvents(mBody)		;break;
 		case "PERSONFILE"	: p.addUser(mBody)			;break;
 		case "ACCEPTED"		: p.updateVolunteer(mBody);	;break;
+		case "MODUSER"		: p.updateUserData(mBody);	;break;
 		default 			: break;
 	}
 }

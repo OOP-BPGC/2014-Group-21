@@ -25,6 +25,7 @@ public class Driver {
 		String type = ""; // THE TYPE WILL BE "CORE" for core, "PH" for projecthead, and "VOL" for volunteer 
 		int flag = 0;
 		int tries = 1;
+		int flagcred = 0;
 		String oldDataFile = null;
 		do {
 			Scanner inputs = new Scanner(System.in);
@@ -47,21 +48,14 @@ public class Driver {
 					oldDataFile = op;
 					String splits[] = op.split("@@@@");
 					if (splits[1].equals(name)){
-						System.out.println("Name found. Searching for credentials...");
 						String searcher = "\"Credentials\":[\"" + usrnm + "\",\"" +pswrd+ "\"]";
 						if (splits[2].contains(searcher)){
 							type = splits[3];
 							JString = splits[2];
-							System.out.println("Credential match found. Loading user details...");
+							System.out.println("Name and credential match found. Loading user details...");
 							flag = 1;
 							break;
 						}
-						else{
-							System.out.println("Credential match not found.");
-						}
-					}
-					else {
-						System.out.println("Name match not found.");
 					}
 				}
 				in.close();
@@ -76,7 +70,9 @@ public class Driver {
 				break;
 			}
 			int tryleft = 3 - (tries++);
+			if(tryleft > 0){
 			System.out.println("Please enter the correct details. Tries left : "+ tryleft);
+			}
 		} while (tries < 4);
 		/*
 		 * LOOP EXITED, DATA TAKEN
@@ -88,32 +84,41 @@ public class Driver {
 			return;
 		}
 		
-		if (type == "CORE") {
+		if (type.contains("CORE")) {
 			Core a = gson.fromJson(JString, Core.class);			
 			CoreMenu(a);
-			String finalmessage = getNewData(oldDataFile, a);
+			String newDataFile = getNewData(oldDataFile, a);
+//			String finalmessage = getNewData(oldDataFile, a);
+			String vegastag = "VEGAS@SAVEG";
+			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
 			MessageHelper.SendMessage(a, mess);
-			Person.ReplaceInDatabase("userlist", finalmessage, oldDataFile);
+			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 		}
-		else if (type == "PH") {
+		else if (type.contains("PH")) {
 			ProjectHead a = gson.fromJson(JString, ProjectHead.class);		
 			PHMenu(a);
-			String finalmessage = getNewData(oldDataFile, a);
+			String newDataFile = getNewData(oldDataFile, a);
+//			String finalmessage = getNewData(oldDataFile, a);
+			String vegastag = "VEGAS@SAVEG";
+			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
 			MessageHelper.SendMessage(a, mess);
-			Person.ReplaceInDatabase("userlist", finalmessage, oldDataFile);
+			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 		}
-		else if (type == "VOL"){
+		else if (type.contains("VOL")){
 			Volunteer a = gson.fromJson(JString, Volunteer.class);		
 			VolunteerMenu(a);
-			String finalmessage = getNewData(oldDataFile, a);
+			String newDataFile = getNewData(oldDataFile, a);
+//			String finalmessage = getNewData(oldDataFile, a);
+			String vegastag = "VEGAS@SAVEG";
+			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
 			MessageHelper.SendMessage(a, mess);
-			Person.ReplaceInDatabase("userlist", finalmessage, oldDataFile);
+			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 		}
 		
 		else{

@@ -198,8 +198,14 @@ public class Person {
 			}
 		}
 		
-		public void updateUserData(){
-			
+		public void updateUserData(String message){
+			String[] split1 = message.split("@@@@");
+			String worker = split1[1];
+			String vegastag = "VEGAS@SAVEG";
+			String[] split2 = worker.split(vegastag);
+			String oldstuff = split2[1]; 
+			String newstuff = split2[2];
+			Person.ReplaceInDatabase("userlist", newstuff, oldstuff);
 		}
 		
 		public void updateVolunteer(String message){
