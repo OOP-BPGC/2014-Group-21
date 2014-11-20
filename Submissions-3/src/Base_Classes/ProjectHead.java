@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+import tests.MessageBuilder;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
@@ -54,7 +56,7 @@ public class ProjectHead extends Person {
 			Scanner scan1 = new Scanner(System.in);
 			Project p; Gson gson = new Gson();
 			String a;
-			String message;
+			String finalmessage;
 			while (in.hasNextLine()){
 				op = in.nextLine();
 				splitmessage = op.split("@@@@");
@@ -63,10 +65,18 @@ public class ProjectHead extends Person {
 				a = scan1.nextLine();
 				if (a == "Y"){
 					System.out.println("Project from " + splitmessage[4] + " accepted.");
-					message = "ACCEPTED@@@@" + splitmessage[4] + "@@@@" + p.Name;
+					finalmessage = "ACCEPTED@@@@" + splitmessage[4] + "@@@@" + p.Name;
 					/*
 					 * Message sent to the sender class
 					 */
+					String[] delim = finalmessage.split("@@@@");
+					Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+					MessageHelper.SendMessage(this, mess);
+					System.out.println("Message has been sent");
+				}
+				else{
+					System.out.println("Project from " + splitmessage[4] + " rejected.");
+
 				}
 			}
 			in.close();
