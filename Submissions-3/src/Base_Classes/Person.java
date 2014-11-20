@@ -224,8 +224,6 @@ public class Person {
 					PrintWriter f = new PrintWriter("file55.txt");
 					int i = 0;
 					String s = "_";
-//					String s1= "Neeraj Ingle";
-//		    	System.out.println("LELLO");
 					while(in.hasNextLine()){
 						op = in.nextLine();
 						if(op.contains("{\"CurrentProject\":\"_\"")){
@@ -309,7 +307,7 @@ public class Person {
 		}
 		
 		public static int ReplaceInDatabase(String filename, String stringtoappend, String stringtoreplace){
-			
+			// Deletes multiple entries as it writes to a new file.
 			try {
 				File file1 = new File(filename+".txt");
 				Scanner in = new Scanner(file1);
