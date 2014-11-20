@@ -28,7 +28,7 @@ import javax.mail.internet.ParseException;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-
+/** This classes handles the responsibility of sending and receiving e-mail*/
 class GmailUtilities {
     
     private Session session = null;
@@ -40,11 +40,13 @@ class GmailUtilities {
         
     }
     
+    /**sets username and password*/
     public void setUserPass(String username, String password) {
         this.username = username;
         this.password = password;
     }
     
+    /** makes connection to pop3 server*/
     public void connect() throws Exception {
         
         String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
@@ -64,6 +66,8 @@ class GmailUtilities {
         store.connect();
         
     }
+    
+    /** Open storage folder*/
     
     public void openFolder(String folderName) throws Exception {
         
@@ -87,23 +91,23 @@ class GmailUtilities {
             
         }
     }
-    
+    /** close folder*/
     public void closeFolder() throws Exception {
         folder.close(false);
     }
-    
+    /** Returns number of messages*/
     public int getMessageCount() throws Exception {
         return folder.getMessageCount();
     }
-    
+    /** Returns number of new messages*/
     public int getNewMessageCount() throws Exception {
         return folder.getNewMessageCount();
     }
-    
+    /**Disconnect from server*/
     public void disconnect() throws Exception {
         store.close();
     }
-    
+    /** Print a message in inbox*/
     public void printMessage(int messageNo) throws Exception {
         System.out.println("Getting message number: " + messageNo);
         
@@ -116,6 +120,8 @@ class GmailUtilities {
             System.out.println("Message number out of range");
         }
     }
+    
+    /** Print the envelope of all messages*/
     
     public void printAllMessageEnvelopes() throws Exception {
         
@@ -136,6 +142,7 @@ class GmailUtilities {
         
     }
     
+    /**Prints all messages*/
     public void printAllMessages() throws Exception {
      
         // Attributes & Flags for all messages ..
@@ -154,6 +161,7 @@ class GmailUtilities {
         
     
     }
+    /** Prints recent messages*/
     
     public String[] printRecentMessages(int days) throws Exception {
         
@@ -263,7 +271,7 @@ class GmailUtilities {
         }
         
     }
-   
+   /** Sends E-mail*/
    public static boolean sendEmail(String from, String to, String sub, String text, final String user, final String pwd) {
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
