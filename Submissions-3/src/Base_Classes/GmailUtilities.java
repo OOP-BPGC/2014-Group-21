@@ -30,7 +30,7 @@ import javax.mail.internet.ParseException;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
-class GmailUtilities {
+public class GmailUtilities {
     
     private Session session = null;
     private Store store = null;
@@ -264,6 +264,24 @@ class GmailUtilities {
         }
         
     }
+   
+   /***
+    * Validates given user name and password
+    * @param usr Username
+    * @param pwd Password
+    */
+   
+   public static boolean checkCredentials(String usr, String pwd) {
+	   GmailUtilities g = new GmailUtilities();
+	   g.setUserPass(usr, pwd);
+	   try{
+		   g.connect();
+	   }catch(Exception e){
+		   return false;
+	   }
+	   
+	   return true;
+   }
    
    public static boolean sendEmail(String from, String to, String sub, String text, final String user, final String pwd) {
 		Properties props = new Properties();
