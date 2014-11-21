@@ -12,6 +12,13 @@ import com.google.gson.Gson;
 
 import Base_Classes.Project;
 
+/**
+ *  An extension of the class Person, implements all the use cases available to a Core member.  
+ *  Exhaustive list: Retrieve a list of projects, modify details of a member, create a new
+ *  event of project, create and broadcast a message, and create a new user.
+ *  @author Rohit Pandey
+ */
+
 public class Core extends Person {
 
 
@@ -34,6 +41,10 @@ public class Core extends Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Generates a list of projects in progress from the project database.
+	 */
 	
 	public void getProjectsTest(String s) {
 		File file1 = new File(s);
@@ -62,6 +73,9 @@ public class Core extends Person {
 		return;
 	}
 	
+	/** 
+	 * Displays a list of projects in the File projectdatabase.
+	 */
 	public void getProjects() {
 		File file1 = new File("projectdatabase.txt");
 		Scanner scan;
@@ -89,9 +103,17 @@ public class Core extends Person {
 		return;
 	}
 	
+	/**
+	 * Changes the details of a member.
+	 */
+	
 	public void ModifyMember() {
 	  }
 
+	/**
+	 * Creates a new event.
+	 */
+	
 	  public void CreateEvent() {
 		  Scanner in = new Scanner(System.in);
 		  Event event = new Event();
@@ -126,6 +148,10 @@ public class Core extends Person {
 			  return;
 		  }
 	  }
+	  
+	  /**
+	   * Creates a new project.
+	   */
 
 	  public void CreateProject() {
 		  Scanner sc = new Scanner(System.in);
@@ -225,6 +251,10 @@ public class Core extends Person {
 		  }
 	  }
 	  
+	  /**
+	   * Creates and sends a new message.
+	   */
+	  
 	  public void CreateMessage() {
 		  Message m = new Message();
 		  Scanner sc = new Scanner(System.in);
@@ -291,6 +321,12 @@ public class Core extends Person {
 	  }
 	*/  
 	  
+		/**
+		 * Adds a string to the message database, provided the user has the appropriate 
+		 * PRIVILEGELEVEL.
+		 * @param message
+		 */
+	  
 	public void addMessages (String message){
 		/*
 		 * MIGHT WANT TO KEEP THIS AS AN INT
@@ -300,11 +336,20 @@ public class Core extends Person {
 			this.appendToDatabase("messagedatabase", message);	
 		}
 	}
-
+	
+	/**
+	 * Broadcasts a message(?).
+	 */
+	
 	public void BroadcastMessage() {
 	
 	}
 
+	/**
+	 * Creates a new user, adds it to the list of users, and broadcasts their existence to 
+	 * everyone else.
+	 */
+	
 	public void CreateUser() {
 		// TODO to create a new user
 		String newmessage;

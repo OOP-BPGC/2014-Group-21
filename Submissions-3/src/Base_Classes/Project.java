@@ -8,6 +8,12 @@ import java.util.Vector;
 
 import com.google.gson.Gson;
 
+/**
+ * Contains the details of a single project, as well as the method to encode the details in 
+ * preparation for transfer.
+ * @author Rohit Pandey
+ */
+
 public class Project {
 
   public String Name;
@@ -78,13 +84,26 @@ public class Project {
 	}
 
 // OVER SETTERS AND GETTERS
+	
+	/**
+	 * Displays the project schedule.
+	 */
 
 	public void ViewSchedule() {
 	}
-
+	
+	/**
+	 * Creates a new Event.
+	 */
+	
 	public void SetEvent() {
 	}
 	
+	/**
+	 * Encodes the details of the project in a specific format in preparation to transfer the 
+	 * details.
+	 * @return finalmessage
+	 */
 
 	public String encodeProject() {
 		String finalmessage;
@@ -97,6 +116,14 @@ public class Project {
 		finalmessage = tag1+del+tag3+del+tag2+del+gsonfile;
 		return finalmessage;
 	}
+	
+	/**
+	 * Adds a new project to the project database.
+	 * @param x
+	 * @param finalmessage
+	 * @return
+	 */
+	
 	public int addProjectToDatabase(Designation x,String finalmessage) {
 		// TODO Auto-generated method stub
 		if (x == Designation.CORE){

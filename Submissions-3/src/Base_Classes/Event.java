@@ -1,8 +1,11 @@
 package Base_Classes;
 
-
-
 import com.google.gson.Gson;
+
+/**
+ * An object corresponding to an Event, containing the details of the Event.
+ * @author Rohit Pandey
+ */
 
 public class Event {
 
@@ -77,6 +80,11 @@ public void setContactNumber(String contactNumber) {
 	Organiser = organiser;
   }
 
+  /**
+   * Returns the Event object in the form of a string that can be transmitted.
+   * @return finalmessage
+   */
+  
 public String encodeEvent() {
 	String finalmessage;
 	String tag1 = "EVENT";
@@ -89,6 +97,12 @@ public String encodeEvent() {
 	return finalmessage;
 }
 /// CHANGE MADE HERE...CORE TO GENERAL???
+/**
+ * Adds the details of the event to the event database if the user is a core member.
+ * @param x
+ * @param finalmessage
+ * @return
+ */
 public int addEventToDatabases(Designation x, String finalmessage) {
 	if (x == Designation.CORE){
 		Core tempCore = new Core();

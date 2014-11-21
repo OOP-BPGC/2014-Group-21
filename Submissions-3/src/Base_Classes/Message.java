@@ -4,6 +4,12 @@ import java.util.Vector;
 
 import com.google.gson.Gson;
 
+/**
+ * Contains methods to encode/decode objects to a JSon String, as well as compose String messages
+ * in a predefined format.
+ * @author Rohit Pandey
+ */
+
 public class Message {
 
   public String Date;
@@ -73,17 +79,35 @@ public void setTo(String[] to) {
 	
 }
 
+/**
+ * Converts a message object to JSon format.
+ * @param m
+ * @return ret
+ */
+
 public String encodeObj(Message m) {
 	Gson gson = new Gson();
 	String ret = gson.toJson(m);
 	return ret;
 }
 
+/**
+ * Converts a JSon string to a message object.
+ * @param s
+ * @return m
+ */
+
 public Message decodeJson (String s){
 	Gson gson = new Gson();
 	Message m = gson.fromJson(s, Message.class);
 	return m;
 }
+
+/**
+ * Compiles data into a string of predefined format.
+ * @param m
+ * @return finalmessage
+ */
 
 public String encodeMsg(Message m) {
 	String finalmessage;
@@ -99,6 +123,12 @@ public String encodeMsg(Message m) {
 	// MESSAGE@@@@<SENDER'S NAME>@@@@<JSON>@@@@<MIN_PRIVILEGE_LEVEL  --> BLEH
 }
 
+/**
+ * Deconstructs the transmitted string.
+ * @param jstring
+ * @param p
+ */
+
 public void decodeMsg(String jstring, Core p){
 	Message m = decodeJson(jstring);
 	String mTag = m.Tag;
@@ -113,6 +143,12 @@ public void decodeMsg(String jstring, Core p){
 		default 			: break;
 	}
 }
+
+/**
+ * Deconstructs the transmitted string.
+ * @param jstring
+ * @param p
+ */
 
 public void decodeMsg(String jstring, ProjectHead p){
 	Message m = decodeJson(jstring);
@@ -130,6 +166,12 @@ public void decodeMsg(String jstring, ProjectHead p){
 	}
 }
 
+/**
+ * Deconstructs the transmitted string.
+ * @param jstring
+ * @param p
+ */
+
 public void decodeMsg(String jstring, Volunteer p){
 	Message m = decodeJson(jstring);
 	String mTag = m.Tag;
@@ -145,7 +187,12 @@ public void decodeMsg(String jstring, Volunteer p){
 	}
 }
 
-
+/**
+ * Adds a message to the message database if the user is a core member.
+ * @param x
+ * @param finalmessage
+ * @return
+ */
 
 public int addMessageToDatabase(Designation x,String finalmessage) {
 	if (x == Designation.CORE){

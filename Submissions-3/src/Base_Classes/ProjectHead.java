@@ -11,11 +11,23 @@ import tests.MessageBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+/**
+ *  An extension of the class Person, implements all the use cases available to, well, a Project 
+ *  Head.  Exhaustive list: Handling project requests from volunteers, managing projects, managing
+ *  events, and broadcasting messages.
+ *  @author Rohit Pandey
+ */
+
 public class ProjectHead extends Person {
 
 	  public String ProjectName;
 //	  public int projectCode;
 	  public final Designation desig = Designation.PROJECT_HEAD;
+	  /**
+	   * Each class corresponding to a designation, as well as all data sent and received, 
+	   * has a different PRIVELEGELEVEL. The class can receive/modify data only at a 
+	   * PRIVILEGELEVEL equal to or lower than the class' PRIVILEGELEVEL.
+	   */
 	  public final int PRIVILEGELEVEL = 2;
 	  public boolean hasProject;
 	  	
@@ -24,6 +36,12 @@ public class ProjectHead extends Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Adds a string to the message database, provided the user has the appropriate 
+	 * PRIVILEGELEVEL.
+	 * @param message
+	 */
 	
 	public void addMessages (String message){
 		/*
@@ -43,6 +61,13 @@ public class ProjectHead extends Person {
 		this.hasProject = false;
 //		this.projectCode = projectCode;
 	}
+	
+	/**
+	 * Reads through a file of project requests from volunteers and provides an option to accept 
+	 * or reject the requests. If a request is accepted, a message is sent to the volunteer that 
+	 * submitted the request.
+	 */
+	
 	
 	public void handleProjectRequests(){
 		/*
@@ -92,6 +117,12 @@ public class ProjectHead extends Person {
 		}
 	}
 	
+	/**
+	 * Adds a string to the Project Database. If the user is not associated with any project, 
+	 * sets this as their current project.
+	 * @param message
+	 */
+	
 	public void addProject (String message){
 		this.appendToDatabase("projectdatabase", message);
 		if (!this.hasProject){
@@ -104,10 +135,20 @@ public class ProjectHead extends Person {
 		}
 	}
 
+	/**
+	 * Returns the name of the Project associated with the user as a String.
+	 * @return ProjectName
+	 */
+	
 	public String getProjectName() {
 		return ProjectName;
 	}
 
+	/**
+	 * Sets a Project as the project associated with the user.
+	 * @param projectName
+	 */
+	
 	public void setProjectName(String projectName) {
 		ProjectName = projectName;
 	}
@@ -115,12 +156,25 @@ public class ProjectHead extends Person {
 	public void VolunteerProjectRequest() {
 	}
 
+	/**
+	 * Modifies details of the associated project.
+	 */
+	
+	
 	public void ManageProject() {
 	}
+	  
+	  /**
+	   * Creates and...broadcasts a...message.
+	   */
 
 	public void CreateAndBroadcastMessage() {
 	}
 
+	  /**
+	   * Modifies details of an Event.
+	   */
+	  
 	public void ManageEvent() {
 	}
 

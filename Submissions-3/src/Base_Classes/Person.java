@@ -15,8 +15,19 @@ import tests.MessageBuilder;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+/** 
+ * The base class inheritted by Volunteer, ProjectHead and Core. Contains use cases and 
+ * attributes common to all three derived classes.
+ * @author Rohit Pandey
+ */
+
 public class Person {
 
+	/**
+	 * Each class corresponding to a designation, as well as all data sent and received, 
+	 * has a different PRIVELEGELEVEL. The class can receive/modify data only at a 
+	 * PRIVILEGELEVEL equal to or lower than the class' PRIVILEGELEVEL.
+	 */
 	
 	  static final int PRIVILEGELEVEL = 1;
 
@@ -46,7 +57,10 @@ public class Person {
 		}
 	}
 	
-	
+	/**
+	 * Returns credentials of the user as a String.
+	 * @return Credentials
+	 */
 
 	public String[] getCredentials() {
 		return Credentials;
@@ -90,7 +104,14 @@ public class Person {
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
-	  
+	
+	/**
+	 * Displays a list of all projects from the file filename. If the user is a Volunteer without 
+	 * a project, provides the option to apply for a project.
+	 * @param x
+	 * @param filename
+	 */
+	
 	public void getProjects(Designation x, String filename) {
 		// Method to list out the projects
 		int i;
@@ -148,6 +169,13 @@ public class Person {
 		}
 	} 
 	
+	/**
+	 * Appends the String stringtoappend to a text database in the file filename.
+	 * @param filename
+	 * @param stringtoappend
+	 * @return 
+	 */
+	
 	public int appendToDatabase(String filename, String stringtoappend){
 		
 		  try {
@@ -175,7 +203,11 @@ public class Person {
 	  }
 	
 		// ADD PROJECTS IS IN INDIVIDUAL INHERITED CLASSES
-		
+	/**
+	 * Adds a string to the Event Database.
+	 * @param message
+	 */
+	
 		public void addEvents (String message){
 			/*
 			 *  same as above
@@ -183,11 +215,21 @@ public class Person {
 			this.appendToDatabase("eventdatabase", message);
 		}
 		
+		/**
+		 * Adds a string to the Project Database.
+		 * @param message
+		 */
+				
 		public void addProject (String message){
 			this.appendToDatabase("projectdatabase", message);
 			// ANOTHER INSTANCE IN PJH CLASS
 		}
 		
+		/**
+		 * Creates a new User and adds the ID to the list of Users.
+		 * @param message
+		 */
+				
 		public void addUser (String message){
 			//EXTRACTS THE STRING TO bE SAVED AND THEN APPENDS IT
 			String[] splitstring = message.split("@@@@");
@@ -198,6 +240,11 @@ public class Person {
 			}
 		}
 		
+		/**
+		 * Updates the User's information.
+		 * @param message
+		 */
+		
 		public void updateUserData(String message){
 			String[] split1 = message.split("@@@@");
 			String worker = split1[1];
@@ -207,6 +254,11 @@ public class Person {
 			String newstuff = split2[2];
 			Person.ReplaceInDatabase("userlist", newstuff, oldstuff);
 		}
+		
+		/**
+		 * Updates a volunteer's current project, if their project request gets accepted.
+		 * @param message
+		 */
 		
 		public void updateVolunteer(String message){
 			try {
@@ -261,6 +313,11 @@ public class Person {
 			}
 		}
 		
+		/**
+		 * Adds Volunteer Project Requests to a database.
+		 * @param message
+		 */
+		
 		public void addVolunteerProjectRequests(String message){
 			if (this.PRIVILEGELEVEL == 2){
 				String[] splitmessage = message.split("@@@@");
@@ -270,6 +327,11 @@ public class Person {
 				
 			}
 		}
+		
+		/**
+		 * Asks for the number of messages required and displays that many, starting from the 
+		 * latest received message.
+		 */
 		
 		public void listMessages(){
 			int input = -1;
@@ -325,6 +387,13 @@ public class Person {
 			}
 		}
 		
+		/**
+		 * Replaces String stringtoreplace with String stringtoappend in the File filename.
+		 * @param filename
+		 * @param stringtoappend
+		 * @param stringtoreplace
+		 */
+		
 		public static int ReplaceInDatabase(String filename, String stringtoappend, String stringtoreplace){
 			// Deletes multiple entries as it writes to a new file.
 			try {
@@ -353,7 +422,10 @@ public class Person {
 			return 1;
 		}
 		
-		
+		/**
+		 * Accepts the number of most recent events to display, retrieves them from event 
+		 * database, and displays them.
+		 */
 		// Method to list events
 		public void listEvents(){
 			int input = -1;
