@@ -93,12 +93,13 @@ public class ProjectHead extends Person {
 	}
 	
 	public void addProject (String message){
-		this.appendToDatabase("projectdatabase", message);
+		this.appendToDatabase("lel", message);
 		if (!this.hasProject){
 			String[] splitstring = message.split("@@@@");
-			if (this.getName() == splitstring[1]){
+			if (splitstring[1].equals(this.Name)){
 				this.setProjectName(splitstring[2]);
 				this.hasProject = true;
+				this.appendToDatabase("myproject", message);
 			}
 		}
 	}
