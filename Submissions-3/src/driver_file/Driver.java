@@ -135,26 +135,28 @@ public class Driver {
 		int choice;
 		if (volunteer.hasProject == false) {
 			while(loop) {
-				System.out.println("\n1. List Projects\n2. Check Messaes\n3. Exit");
+				System.out.println("\n1. List Projects\n2. Check Messages \n3. Check Events\n4. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
 					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
 					case 2: volunteer.listMessages(); break;  //DONE
-					case 3: loop = false; break;
+					case 3: volunteer.listEvents(); break; //DONE  listEvents is in Person class
+					case 4: loop = false; break;
 					default: System.out.println("Invalid Selection.");
 				}
 			}
 		}
 		else {
 			while(loop) {
-				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messaes\n4. Exit");
+				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messaes \n4. Check Events\n5. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
 					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
 					case 2: System.out.println("Your current project is : "+volunteer.getCurrentProject()); 
 							break;
 					case 3: volunteer.listMessages(); break;  //DONE
-					case 4: loop = false; break;
+					case 4: volunteer.listEvents(); break; //DONE  listEvents is in Person class
+					case 5: loop = false; break;
 					default: System.out.println("Invalid Selection.");
 				}
 			}
@@ -166,15 +168,15 @@ public class Driver {
 		scan = new Scanner(System.in);
 		int choice;
 		while(loop) {
-			System.out.println("\n1.Approve Volunteer Request(s)\n2. List Projects\n3. Current Project Details\n4. Check Messages \n5. Exit");
+			System.out.println("\n1.Approve Volunteer Request(s)\n2. List Projects\n3. Current Project Details\n4. Check Messages \n5. Check Events\n6. Exit");
 			choice = scan.nextInt();
 			switch (choice) {
 				case 1: projectHead.VolunteerProjectRequest(); break;
 				case 2: projectHead.getProjects(projectHead.desig, "projectlist"); break; //DONE
 				case 3: projectHead.getProjectName(); break; //Need details apart from name
 				case 4: projectHead.listMessages(); break;
-//				case 5: projectHead.ManageEvent(); break;
-				case 5: loop = false; break;
+				case 5: projectHead.listEvents(); break; //DONE  listEvents is in Person class
+				case 6: loop = false; break;
 				default: System.out.println("Invalid Selection.");
 			}
 		}
@@ -185,7 +187,7 @@ public class Driver {
 		scan = new Scanner(System.in);
 		int choice;
 		while(loop) {
-			System.out.println("\n1. List Projects\n2. Create Project\n3. Create a new Project\n4. Schedule Event\n5. Create Member\n5. Check Messages\n6. Exit");
+			System.out.println("\n1. List Projects\n2. Create Project\n3. Create a new Project\n4. Schedule Event\n5. Create Member\n6. Check Messages \n7. Check Events\n8. Exit");
 			choice = scan.nextInt();
 			switch (choice) {
 				case 1: core.getProjects(); break; //DONE
@@ -194,7 +196,8 @@ public class Driver {
 				case 4: core.CreateEvent(); break;  // DONE
 				case 5: core.CreateUser(); break;  //DONE
 				case 6: core.listMessages(); break;  //DONE
-				case 7: loop = false; break; 
+				case 7: core.listEvents(); break;   //DONE listEvents is in Person Class
+				case 8: loop = false; break; 
 				default: System.out.println("Invalid Selection.");
 			}
 		}
