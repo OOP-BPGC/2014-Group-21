@@ -93,7 +93,7 @@ public class ProjectHead extends Person {
 	}
 	
 	public void addProject (String message){
-		this.appendToDatabase("lel", message);
+		this.appendToDatabase("projectdatabase", message);
 		if (!this.hasProject){
 			String[] splitstring = message.split("@@@@");
 			if (splitstring[1].equals(this.Name)){
@@ -113,15 +113,15 @@ public class ProjectHead extends Person {
 	}
 
 	public void VolunteerProjectRequest() {
-	  }
-
-	  public void ManageProject() {
-	  }
-
-	  public void CreateAndBroadcastMessage() {
-	  }
-
-	  public void ManageEvent() {
-	  }
-
 	}
+
+	public void ManageProject() {
+	}
+
+	public void CreateAndBroadcastMessage() {
+	}
+
+	public void ManageEvent() {
+	}
+
+}
