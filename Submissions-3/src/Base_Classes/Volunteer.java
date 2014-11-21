@@ -5,7 +5,7 @@ public class Volunteer extends Person {
 	  public String CurrentProject;
 	  public final Designation desig = Designation.VOLUNTEER;
 	  public static final int PRIVILEGELEVEL = 1;
-	  public static boolean hasProject = false;
+	  public boolean hasProject;
 
 	  public void RequestProject() {
 	  }
@@ -35,6 +35,7 @@ public class Volunteer extends Person {
 			String phoneNumber, String currentProject, String[] credentials) {
 		super(name, iDNumber, designation, phoneNumber, credentials);
 		CurrentProject = currentProject;
+		this.hasProject = false;
 	}
 
 	public String getCurrentProject() {

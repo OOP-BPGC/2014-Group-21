@@ -17,7 +17,7 @@ public class ProjectHead extends Person {
 //	  public int projectCode;
 	  public final Designation desig = Designation.PROJECT_HEAD;
 	  public final int PRIVILEGELEVEL = 2;
-	  public static boolean hasProject = false;
+	  public boolean hasProject;
 	  	
 	  
 	public ProjectHead() {
@@ -40,6 +40,7 @@ public class ProjectHead extends Person {
 			String phoneNumber, String projectName, String[] credentials) {
 		super(name, iDNumber, designation, phoneNumber,credentials);
 		ProjectName = projectName;
+		this.hasProject = false;
 //		this.projectCode = projectCode;
 	}
 	
