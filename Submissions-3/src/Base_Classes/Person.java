@@ -274,18 +274,18 @@ public class Person {
 		public void listMessages(){
 			int input = -1;
 			do {
-				System.out.println("Enter the number of previous messages that you want to see (Only positive numbers allowed.). Enter 0 to exit.");
-				Scanner scan = new Scanner(System.in);
-				input = scan.nextInt();
-				if (input == 0){
-					System.out.println("You have pressed zero. Exiting to main screen.");
-					return;
-				}
-				} while (input < 1);
+			System.out.println("Enter the number of previous messages that you want to see (Only positive numbers allowed.). Enter 0 to exit.");
+			Scanner scan = new Scanner(System.in);
+			input = scan.nextInt();
+			if (input == 0){
+				System.out.println("You have pressed zero. Exiting to main screen.");
+				return;
+			}
+			} while (input < 1);
 				
 			List<String> messagelist = new ArrayList<String>();
 			try {
-				File file = new File ("messagedatabase.txt");
+				File file = new File ("mtest.txt");
 				Scanner in = new Scanner(file);
 				String op;
 				String[] splitmessage;
@@ -303,11 +303,6 @@ public class Person {
 			Message  mess;
 			String jstring;
 			int size = messagelist.size();
-			if (size == 0){
-				System.out.println("No events to display in the List. " +
-						"Please get the Database checked if you think this is an error.");
-				return;
-			}
 			int j = 1;
 			if (size >= 0 && input < size){
 				for (int i = input; i>0; i--){
@@ -351,61 +346,5 @@ public class Person {
 				return 0;
 			}
 			return 1;
-		}
-		
-		
-		// Method to list events
-		public void listEvents(){
-			int input = -1;
-			do {
-				System.out.println("Enter the number of latest events that you want to see (Only positive numbers allowed.). Enter 0 to exit.");
-				Scanner scan = new Scanner(System.in);
-				input = scan.nextInt();
-				if (input == 0){
-					System.out.println("You have pressed zero. Exiting to main screen.");
-					return;
-				}
-				} while (input < 1);
-				
-			List<String> eventlist = new ArrayList<String>();
-			try {
-				File file = new File ("eventdatabase.txt");
-				Scanner in = new Scanner(file);
-				String op;
-				String[] splitevent;
-				int x = 0;
-				while(in.hasNextLine()){
-					op = in.nextLine();
-					splitevent = op.split("@@@@");
-					eventlist.add(splitevent[3]);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("Problem in database. Exiting.");
-			}
-			Gson gson = new Gson();
-			Event event;
-			String jstring;
-			int size = eventlist.size();
-			if (size == 0){
-				System.out.println("No events to display in the List. " +
-						"Please get the Database checked if you think this is an error.");
-				return;
-			}
-			int j = 1;
-			if (size > 0 && input < size){
-				for (int i = input; i>0; i--){
-				jstring = eventlist.get(size-i);
-				event = gson.fromJson(jstring, Event.class);
-				System.out.println(j++ + ".\t Event Name : "+event.Name+"\n\tTo be held on "+event.Date+" at : "+event.Location+"\n\tOrganised by : "+event.getOrganiser()+". Contact ---> "+event.getContactNumber());
-				}
-			}
-			else {
-				for (int i = size -1; i>=0; i--){
-					jstring = eventlist.get(i);
-					event = gson.fromJson(jstring, Event.class);
-					System.out.println(j++ + ".\t Event Name : "+event.Name+"\n\tTo be held on "+event.Date+" at : "+event.Location+"\n\tOrganised by : "+event.getOrganiser()+". Contact ---> "+event.getContactNumber());
-				}
-			}
 		}
 }
