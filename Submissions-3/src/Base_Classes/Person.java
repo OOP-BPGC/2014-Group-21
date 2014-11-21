@@ -211,25 +211,39 @@ public class Person {
 		public void updateVolunteer(String message){
 			try {
 				String[] splitstring = message.split("@@@@");
-				if (splitstring[0] == "ACCEPTED"){
+				if (splitstring[0].equals("ACCEPTED")){
 					String name = splitstring[1];
 					String pname = splitstring[2];
-					
+					String jstring;
+					Gson gson = new Gson();
+					ProjectHead volunteer;
 					/*
 					 * 
 					 */
-					String op = "";
+					String op;
 					File file1 = new File("userlist.txt");
 					Scanner in = new Scanner(file1);
 					PrintWriter f = new PrintWriter("file55.txt");
 					int i = 0;
-					String s = "_";
+					String[] a;
+					String sq = "_";
 					while(in.hasNextLine()){
 						op = in.nextLine();
-						if(op.contains("{\"CurrentProject\":\"_\"")){
-							op = op.replace( "{\"CurrentProject\":\"_\"" , "{\"CurrentProject\":\"" + pname+ "\"");
+						a = op.split("@@@@");
+						jstring = a[2];
+						if (a[1].equals(name)) {
+							volunteer = gson.fromJson(jstring, ProjectHead.class);
+							if (volunteer.ProjectName.equals(sq)){
+								volunteer.setProjectName(pname);
+								volunteer.hasProject = true;
+								a[2] = gson.toJson(volunteer);
+							}
 						}
-						f.println(op + "\n");
+						op = a[0];
+						for(int j = 1; j <a.length;j++){
+							op = op + "@@@@" + a[j];
+						}
+						f.println(op);
 						i++;
 					}
 					f.close();
