@@ -13,21 +13,13 @@ public class MessageHelper {
 
 	public static void SendMessage(Person sender, Message m){
 		
-		if(sender.getDesignation() == Designation.PROJECT_HEAD){
-			try{
-				throw new Exception("You shall not pass");
-			}catch(Exception e){
-				System.out.println("You shall not pass");
-				return;
-			}
-		}
-		else{
+		
 				String user, pwd;
 				user = sender.getCredentials()[0];
 				pwd = sender.getCredentials()[1];
 				// Subject will be set to current date by the class that uses it
 				GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
-			}
+			
 	}
 	
 	
