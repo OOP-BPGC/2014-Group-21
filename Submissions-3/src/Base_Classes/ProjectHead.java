@@ -98,6 +98,7 @@ public class ProjectHead extends Person {
 			String[] splitstring = message.split("@@@@");
 			if (this.getName() == splitstring[1]){
 				this.setProjectName(splitstring[2]);
+				this.hasProject = true;
 			}
 		}
 	}
