@@ -1,5 +1,9 @@
 package Base_Classes;
 
+/**
+ * Contains methods to send messages, and retrieve and read recent messages.
+ * @author Anshul Ravichandran
+ */
 
 import java.util.ArrayList;
 import java.util.Date;
