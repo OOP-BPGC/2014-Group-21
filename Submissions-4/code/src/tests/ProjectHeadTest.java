@@ -8,11 +8,11 @@ import Base_Classes.ProjectHead;
 public class ProjectHeadTest extends TestCase {
 	public void testAddMessage() throws FileNotFoundException{
 		String s ="Is this@@@@how this should@@@@work?@@@@2";
-		new ProjectHead().addMessage(s);
+		new ProjectHead().addMessages(s);
 		try {
 			File file = new File ("messagedatabase.txt");
 			Scanner in = new Scanner(file);
-			String op;
+			String op = "";
 			String[] splitmessage;
 			int x = 0;
 			while(in.hasNextLine())
@@ -30,7 +30,7 @@ public class ProjectHeadTest extends TestCase {
 		try {
 			File file = new File ("projectdatabase.txt");
 			Scanner in = new Scanner(file);
-			String op;
+			String op = "";
 			String[] splitmessage;
 			int x = 0;
 			while(in.hasNextLine())

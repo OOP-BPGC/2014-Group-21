@@ -8,11 +8,11 @@ import Base_Classes.Volunteer;
 public class VolunteerTest extends TestCase {
 	public void testAddMessage() throws FileNotFoundException{
 		String s ="Is this@@@@how this should@@@@work?@@@@1";
-		new Volunteer().addMessage(s);
+		new Volunteer().addMessages(s);
 		try {
 			File file = new File ("messagedatabase.txt");
 			Scanner in = new Scanner(file);
-			String op;
+			String op = "";
 			String[] splitmessage;
 			int x = 0;
 			while(in.hasNextLine())
