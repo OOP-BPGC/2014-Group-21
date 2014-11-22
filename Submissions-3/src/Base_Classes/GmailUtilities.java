@@ -81,6 +81,7 @@ public class GmailUtilities {
         try {
             
             folder.open(Folder.READ_WRITE);
+
             
         } catch (MessagingException ex) {
             

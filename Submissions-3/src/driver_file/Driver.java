@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -96,6 +97,9 @@ public class Driver {
 		
 		if (type.contains("CORE")) {
 			Core a = gson.fromJson(JString, Core.class);	
+				/*String[] msgs =  MessageHelper.RetrieveRecentMessages(6);
+				Message m = new Message();
+				m.decodeMsg(msgs[i], a);*/
 			CoreMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
 //			String finalmessage = getNewData(oldDataFile, a);

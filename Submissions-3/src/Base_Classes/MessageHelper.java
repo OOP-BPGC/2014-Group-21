@@ -79,10 +79,10 @@ public class MessageHelper {
 			List<String> ret = new ArrayList<String>();
 			GmailUtilities gmail = new GmailUtilities();
 			gmail.init();
-			String[] mbodys = gmail.printRecentMessages(days);
-			for(int i=0;i<mbodys.length;i++){
+			gmail.printAllMessages(); //String[] mbodys = printRecentMessages(days);
+			/*for(int i=0;i<mbodys.length;i++){
 				ret.add(mbodys[i]);
-			}
+			}*/
 			return (String[]) ret.toArray();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
