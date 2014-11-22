@@ -129,7 +129,7 @@ public class Person {
 				stringlist.add(op);
 				String[] stemp = op.split("@@@@");
 				p = gson.fromJson(stemp[3], Project.class);
-				System.out.println(i++ + ". Name of Project :"+ p.Name + "      || Project Leader :" + p.getProjectHead());
+				System.out.println(i++ + ".  Name of Project :"+ p.Name + "      || Project Leader :" + p.getProjectHead());
 			}
 		} catch (JsonSyntaxException e) {
 			// TODO Auto-generated catch block
@@ -351,10 +351,16 @@ public class Person {
 				Scanner in = new Scanner(file);
 				String op;
 				String[] splitmessage;
+				Gson q = new Gson();
+				Message message;
 				int x = 0;
 				while(in.hasNextLine()){
 					op = in.nextLine();
 					splitmessage = op.split("@@@@");
+					message = q.fromJson(splitmessage[2], Message.class);
+					if(message.Min_Privilege_Level > this.PRIVILEGELEVEL) {
+						continue;
+					}
 					messagelist.add(splitmessage[2]);
 				}
 			} catch (Exception e) {
@@ -469,7 +475,7 @@ public class Person {
 				for (int i = input; i>0; i--){
 				jstring = eventlist.get(size-i);
 				event = gson.fromJson(jstring, Event.class);
-				System.out.println(j++ + ".\t Event Name : "+event.Name+"\n\tTo be held on "+event.Date+" at : "+event.Location+"\n\tOrganised by : "+event.getOrganiser()+". Contact ---> "+event.getContactNumber());
+				System.out.println(j++ + ".\t Event Name : "+event.Name+"\n\t To be held on "+event.Date+" at : "+event.Location+"\n\t Organised by : "+event.getOrganiser()+". Contact ---> "+event.getContactNumber()+"\n");
 				}
 			}
 			else {
