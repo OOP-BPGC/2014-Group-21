@@ -184,12 +184,12 @@ public class NirmaanManager {
 					ProjectHead ph = (ProjectHead) p;
 					
 					if( ph != null){ 
-						ph.getProjects(ph.desig, "projectlist");
+						ph.getProjects(ph.desig, "projectdatabase");
 						}
 						else{
 							Gson gson = new Gson();
 							ph = (ProjectHead)gson.fromJson(js, ProjectHead.class);
-							ph.getProjects(ph.desig, "projectlist");
+							ph.getProjects(ph.desig, "projectdatabase");
 						}
 					
 				}
@@ -382,7 +382,7 @@ public class NirmaanManager {
 					Gson gson = new Gson();
 					Volunteer v;
 					v = (Volunteer)gson.fromJson(js, Volunteer.class);
-					v.getProjects(v.desig, "projectlist");
+					v.getProjects(v.desig, "projectdatabase");
 					
 				}
 			});
@@ -402,7 +402,7 @@ public class NirmaanManager {
 			
 			JButton btnListMessagesv = new JButton("List Messages");
 			frmNirmaanActivityManager.getContentPane().add(btnListMessagesv, "4, 14");
-			btnGetProjectsv.addActionListener(new ActionListener() {
+			btnListMessagesv.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					txtPane.setText(txtPane.getText() + "\nCheck console for list of messages.");
 					Gson gson = new Gson();
