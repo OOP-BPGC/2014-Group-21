@@ -21,11 +21,12 @@ public class MessageHelper {
 		pwd = sender.getCredentials()[1];
 		// Subject will be set to current date by the class that uses it
 		try {
+			
 			GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");
-			e.printStackTrace();
+			System.out.println("Error in sending email: " + e.getMessage());
 			return 0;
 		}
 		return 1;
@@ -38,7 +39,7 @@ public class MessageHelper {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");
-			e.printStackTrace();
+			System.out.println("Error in sending email: " + e.getMessage());
 			return 0;
 		}
 		return 1;

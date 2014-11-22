@@ -65,10 +65,10 @@ public class MessageTest extends TestCase{
 		  .date("Test")
 		  .from("person3.oopnirmaan@gmail.com").buildMessage();
 		Volunteer v = new Volunteer();
-		v.setCredentials("person3.oopnirmann@gmail.com", "yellowsky");
+		v.setCredentials("person3.oopnirmaan@gmail.com", "yellowsky");
 		String fr = m.From;
-		System.out.println(m.From + "\n" + fr);
-		assertEquals(1,MessageHelper.SendMessage(m.From, "TESTBODY", m.From, "yellowsky"));
+		
+		assertEquals(1,MessageHelper.SendMessage(v,m));
 		
 	}
 }

@@ -319,7 +319,7 @@ public class GmailUtilities {
 			});
 
 		try {
-			System.out.println(from);
+			
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.setRecipients(Message.RecipientType.TO,
@@ -333,7 +333,7 @@ public class GmailUtilities {
 			return true;
 
 		} catch (MessagingException e) { 
-			System.out.println("Error in sending message");
+			System.out.println("Error in sending email: " + e.getMessage());
 			return false;
 			
 		}
