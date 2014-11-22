@@ -30,6 +30,13 @@ import javax.mail.internet.ParseException;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
+
+/**
+ * Contains methods to interface with GMail.
+ * @author Anshul Ravichandar
+ */
+
+
 public class GmailUtilities {
     
     private Session session = null;
@@ -312,7 +319,7 @@ public class GmailUtilities {
 			});
 
 		try {
-
+			System.out.println(from);
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.setRecipients(Message.RecipientType.TO,

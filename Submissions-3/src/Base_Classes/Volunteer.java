@@ -70,6 +70,12 @@ public class Volunteer extends Person {
 		this.hasProject = false;
 	}
 	
+	public void setCredentials(String u, String p){
+		Credentials = new String[2];
+		Credentials[0] = u;
+		Credentials[1] = p;
+	}
+	
 	/**
 	 * Returns the currently associated project as a String.
 	 * @return CurrentProject

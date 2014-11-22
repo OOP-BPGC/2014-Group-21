@@ -1,5 +1,8 @@
 package tests;
-
+/**
+ * Builder pattern for Core class
+ * @author Anshul Ravichandar
+ */
 import Base_Classes.Core;
 import Base_Classes.Designation;
 

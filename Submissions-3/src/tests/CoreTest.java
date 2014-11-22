@@ -11,6 +11,11 @@ import java.util.Scanner;
 import junit.framework.TestCase;
 import Base_Classes.Core;
 
+/**
+ * Tests fields and I/O methods
+ * @author Anshul Ravichandar
+ */
+
 public class CoreTest extends TestCase {
 
 	public void testStringFields(){

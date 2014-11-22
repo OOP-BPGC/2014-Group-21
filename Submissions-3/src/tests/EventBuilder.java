@@ -1,8 +1,8 @@
-/*
- * 
- * Builder pattern for readability and functionality
- * 
+/**
+ * Builder pattern for Event class
+ * @author Anshul Ravichandar
  */
+ 
 
 package tests;
 

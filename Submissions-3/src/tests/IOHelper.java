@@ -3,7 +3,10 @@ package tests;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+/**
+ * Some IO helper functions for test
+ * @author Anshul Ravichandar
+ */
 public class IOHelper {
 
 	public static String getFirstEntry(String filename) {

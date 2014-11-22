@@ -1,5 +1,10 @@
 package tests;
 
+/**
+ * Builder pattern for Person class
+ * @author Anshul Ravichandar
+ */
+
 import Base_Classes.Designation;
 import Base_Classes.Person;
 

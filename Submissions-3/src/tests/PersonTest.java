@@ -1,5 +1,10 @@
 package tests;
 
+/**
+ * Tests fields and I/O methods
+ * @author Anshul Ravichandar
+ */
+
 import java.util.Arrays;
 
 import junit.framework.TestCase;

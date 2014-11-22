@@ -6,6 +6,11 @@ import com.google.gson.Gson;
 
 import junit.framework.TestCase;
 
+/**
+ * Tests fields and I/O methods
+ * @author Anshul Ravichandar
+ */
+
 public class EventTest extends TestCase{
 	
 		public void testEncodeEvent(){

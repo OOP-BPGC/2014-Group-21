@@ -1,9 +1,7 @@
-/*
- * 
- * Builder pattern for readability and functionality
- * 
+/**
+ * Builder pattern for Message class
+ * @author Anshul Ravichandar
  */
-
 package tests;
 
 import Base_Classes.Message;
@@ -47,7 +45,7 @@ public class MessageBuilder {
 	  }
 	  
 	  public MessageBuilder from(String _from){
-		  this.Date = _from;
+		  this.From = _from;
 		  return this;
 	  }
 	  

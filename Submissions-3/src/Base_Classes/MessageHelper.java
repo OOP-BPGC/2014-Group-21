@@ -24,11 +24,24 @@ public class MessageHelper {
 			GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");
+			//System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");
+			e.printStackTrace();
 			return 0;
 		}
 		return 1;
 
+	}
+	
+	public static int SendMessage(String from, String json, String user, String pwd){
+		try {
+			GmailUtilities.sendEmail(from,"oopnirmaan@gmail.com", new Date().toString(), json, user, pwd);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");
+			e.printStackTrace();
+			return 0;
+		}
+		return 1;
 	}
 	
 	
