@@ -29,7 +29,7 @@ public class MessageHelper {
 		// Subject will be set to current date by the class that uses it
 		try {
 			
-			GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
+			GmailUtilities.sendEmail(user,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");

@@ -148,12 +148,16 @@ public class Person implements Cloneable{
 			System.out.println("Do you want to apply for a project? (Press Y for yes)");
 			Scanner scanner = new Scanner (System.in);
 			String input = scanner.nextLine();
-			int inputint = 0;
+			int inputint;
 			if (input.equals("Y")){
 				System.out.println("Enter the Project number from the above list :");
-				inputint = scanner.nextInt();
-				if ( inputint <= i ){
-					String y = stringlist.get(i-1);
+				String nt = scanner.nextLine();
+//				System.out.println("WHY?");
+				inputint = Integer.parseInt(nt);
+//				System.out.println(stringlist.size());
+				if ( inputint <= stringlist.size() ){
+					System.out.println("Handling Request.");
+					String y = stringlist.get(inputint-1);
 					String[] tstr= y.split("@@@@");
 					String finalmessage = "PROJREQ";
 					for (int j = 1; j<tstr.length;j++){
@@ -164,7 +168,7 @@ public class Person implements Cloneable{
 					 * Pass the final message to the message class. 
 					 */
 					String[] delim = finalmessage.split("@@@@");
-					Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+					Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(this.getCredentials()[0]).buildMessage();
 					MessageHelper.SendMessage(this, mess);
 					System.out.println("Project request sent....");
 
@@ -250,10 +254,10 @@ public class Person implements Cloneable{
 		 */
 		
 		public void updateUserData(String message){
-			String[] split1 = message.split("@@@@");
-			String worker = split1[1];
+//			String[] split1 = message.split("@@@@");
+//			String worker = split1[1];
 			String vegastag = "VEGAS@SAVEG";
-			String[] split2 = worker.split(vegastag);
+			String[] split2 = message.split(vegastag);
 			String oldstuff = split2[1]; 
 			String newstuff = split2[2];
 			Person.ReplaceInDatabase("userlist", newstuff, oldstuff);

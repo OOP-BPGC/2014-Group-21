@@ -319,7 +319,6 @@ public class GmailUtilities {
 			});
 
 		try {
-			
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(from));
 			message.setRecipients(Message.RecipientType.TO,
@@ -329,11 +328,11 @@ public class GmailUtilities {
 
 			Transport.send(message);
 
-			System.out.println("Done");
+			System.out.println("Update Broadcasted");
 			return true;
 
 		} catch (MessagingException e) { 
-			System.out.println("Error in sending email: " + e.getMessage());
+			System.out.println("Error in sending message");
 			return false;
 			
 		}

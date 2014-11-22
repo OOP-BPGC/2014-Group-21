@@ -97,56 +97,51 @@ public class Driver {
 		
 		if (type.contains("CORE")) {
 			Core a = gson.fromJson(JString, Core.class);
-			/*
-			String[] msgs =  MessageHelper.RetrieveRecentMessages(4);
+			String[] msgs =  MessageHelper.RetrieveRecentMessages(25);
 			Message m = new Message();
 			for (int i=0;i<msgs.length;i++){
 				m.decodeMsg(msgs[i], a);
 			}
-			*/
 			CoreMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
 //			String finalmessage = getNewData(oldDataFile, a);
 			String vegastag = "VEGAS@SAVEG";
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
-			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(a.Name).buildMessage();
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 			MessageHelper.SendMessage(a, mess);
 		}
 		else if (type.contains("PH")) {
 			ProjectHead a = gson.fromJson(JString, ProjectHead.class);
-			/*
 			String[] msgs =  MessageHelper.RetrieveRecentMessages(4);
 			Message m = new Message();
 			for (int i=0;i<msgs.length;i++){
 				m.decodeMsg(msgs[i], a);
 			}
-			*/
 			PHMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
 			String vegastag = "VEGAS@SAVEG";
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
-			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(a.Name).buildMessage();
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 			MessageHelper.SendMessage(a, mess);
 		}
 		else if (type.contains("VOL")){
 			Volunteer a = gson.fromJson(JString, Volunteer.class);
-			/*
 			String[] msgs =  MessageHelper.RetrieveRecentMessages(4);
 			Message m = new Message();
 			for (int i=0;i<msgs.length;i++){
 				m.decodeMsg(msgs[i], a);
 			}
-			*/
 			VolunteerMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
 			String vegastag = "VEGAS@SAVEG";
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
-			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			String[] n = new String[]{"a"};
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(a.getCredentials()[0]).buildMessage();
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 			MessageHelper.SendMessage(a, mess);
 		}
@@ -170,7 +165,7 @@ public class Driver {
 				System.out.println("\n1. List Projects\n2. Check Messages \n3. Check Events\n4. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
-					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
+					case 1: volunteer.getProjects(volunteer.desig, "projectdatabase"); break;  //DONE
 					case 2: volunteer.listMessages(); break;  //DONE
 					case 3: volunteer.listEvents(); break; //DONE  listEvents is in Person class
 					case 4: loop = false; break;
@@ -183,7 +178,7 @@ public class Driver {
 				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messages \n4. Check Events\n5. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
-					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
+					case 1: volunteer.getProjects(volunteer.desig, "database"); break;  //DONE
 					case 2: System.out.println("Your current project is : "+volunteer.getCurrentProject()); 
 							break;
 					case 3: volunteer.listMessages(); break;  //DONE
@@ -208,7 +203,7 @@ public class Driver {
 			choice = scan.nextInt();
 			switch (choice) {
 				case 1: projectHead.handleProjectRequests(); break;
-				case 2: projectHead.getProjects(projectHead.desig, "projectlist"); break; //DONE
+				case 2: projectHead.getProjects(projectHead.desig, "projectdatabase"); break; //DONE
 				case 3: projectHead.getProjectName(); break; //Need details apart from name
 				case 4: projectHead.listMessages(); break;
 				case 5: projectHead.listEvents(); break; //DONE  listEvents is in Person class
