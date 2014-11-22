@@ -15,6 +15,13 @@ import org.joda.time.Days;
 
 public class MessageHelper {
 
+	/**
+	 * Sends a message m from Person sender. The message is broadcasted to all users, but only 
+	 * those with the appropriate PRIVILEGELEVEL can read it. 
+	 * @param sender
+	 * @param m
+	 */
+	
 	public static int SendMessage(Person sender, Message m){
 		String user, pwd;
 		user = sender.getCredentials()[0];
@@ -33,6 +40,15 @@ public class MessageHelper {
 
 	}
 	
+	/**
+	 * Sends a message m from Person sender. The message is broadcasted to all users, but only 
+	 * those with the appropriate PRIVILEGELEVEL can read it. 
+	 * @param from
+	 * @param json
+	 * @param user
+	 * @param pwd
+	 */
+	
 	public static int SendMessage(String from, String json, String user, String pwd){
 		try {
 			GmailUtilities.sendEmail(from,"oopnirmaan@gmail.com", new Date().toString(), json, user, pwd);
@@ -45,7 +61,11 @@ public class MessageHelper {
 		return 1;
 	}
 	
-	
+	/**
+	 * Returns an array of Message objects of all messages upto a specified date.
+	 * @param updateDate
+	 * @return ret.toArray()
+	 */
 	//after:2014/11/13 before:2014/11/16
 	public static Message[] RetrieveRecentMessages(String updateDate){
 		
@@ -67,6 +87,12 @@ public class MessageHelper {
 		return new Message[]{};
 	}
 	
+	/**
+	 * Returns an array of Message objects of all messages upto a specified number of days.
+	 * @param days
+	 * @return ret.toArray()
+	 */
+	
 	public static Message[] RetrieveRecentMessagesArray(int days){
 		
 		try {
@@ -86,6 +112,12 @@ public class MessageHelper {
 		}
 		return new Message[]{};
 	}
+	
+	/**
+	 * Returns a string array of all messages upto a specified number of days.	  
+	 * @param days 
+	 * @return retval.clone()
+	 */
 
 	public static String[] RetrieveRecentMessages(int days){
 		
