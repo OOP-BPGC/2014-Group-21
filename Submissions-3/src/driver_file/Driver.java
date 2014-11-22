@@ -187,7 +187,7 @@ public class Driver {
 			System.out.println("\n1.Approve Volunteer Request(s)\n2. List Projects\n3. Current Project Details\n4. Check Messages \n5. Check Events\n6. Exit");
 			choice = scan.nextInt();
 			switch (choice) {
-				case 1: projectHead.VolunteerProjectRequest(); break;
+				case 1: projectHead.handleProjectRequests(); break;
 				case 2: projectHead.getProjects(projectHead.desig, "projectlist"); break; //DONE
 				case 3: projectHead.getProjectName(); break; //Need details apart from name
 				case 4: projectHead.listMessages(); break;

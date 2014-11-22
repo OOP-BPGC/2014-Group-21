@@ -164,12 +164,12 @@ public class NirmaanManager {
 					ProjectHead ph = (ProjectHead) p;
 					
 					if( ph != null){ 
-						ph.VolunteerProjectRequest();
+						ph.handleProjectRequests();
 						}
 						else{
 							Gson gson = new Gson();
 							ph = (ProjectHead)gson.fromJson(js, ProjectHead.class);
-							ph.VolunteerProjectRequest();
+							ph.handleProjectRequests();
 						}
 					
 				}
