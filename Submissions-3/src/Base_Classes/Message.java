@@ -130,9 +130,17 @@ public String encodeMsg(Message m) {
  */
 
 public void decodeMsg(String jstring, Core p){
-	Message m = decodeJson(jstring);
-	String mTag = m.Tag;
+	Message m;
+	try {
+		m = decodeJson(jstring);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		return;
+	}
 	String mBody = m.Body;
+	String[] splitm = mBody.split("@@@@");
+	String mTag = splitm[0];
+//	System.out.println(mTag + " " + mBody);
 	switch(mTag){
 		case "MESSAGE"		: p.addMessages(mBody)		;break;
 		case "PROJECT"		: p.addProject(mBody)		;break;
@@ -151,9 +159,17 @@ public void decodeMsg(String jstring, Core p){
  */
 
 public void decodeMsg(String jstring, ProjectHead p){
-	Message m = decodeJson(jstring);
-	String mTag = m.Tag;
+	Message m;
+	try {
+		m = decodeJson(jstring);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		return;
+	}
 	String mBody = m.Body;
+	String[] splitm = mBody.split("@@@@");
+	String mTag = splitm[0];
+//	System.out.println(mTag + " " + mBody);
 	switch(mTag){
 		case "MESSAGE"		: p.addMessages(mBody)		;break;
 		case "PROJECT"		: p.addProject(mBody)		;break;
@@ -173,9 +189,17 @@ public void decodeMsg(String jstring, ProjectHead p){
  */
 
 public void decodeMsg(String jstring, Volunteer p){
-	Message m = decodeJson(jstring);
-	String mTag = m.Tag;
+	Message m;
+	try {
+		m = decodeJson(jstring);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		return;
+	}
 	String mBody = m.Body;
+	String[] splitm = mBody.split("@@@@");
+	String mTag = splitm[0];
+//	System.out.println(mTag + " " + mBody);
 	switch(mTag){
 		case "MESSAGE"		: p.addMessages(mBody)		;break;
 		case "PROJECT"		: p.addProject(mBody)		;break;
