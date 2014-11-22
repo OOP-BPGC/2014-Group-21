@@ -145,7 +145,7 @@ public void decodeMsg(String jstring, Core p){
 		case "MESSAGE"		: p.addMessages(mBody)		;break;
 		case "PROJECT"		: p.addProject(mBody)		;break;
 		case "EVENT"		: p.addEvents(mBody)		;break;
-		case "PERSONFILE"	: p.addUser(mBody)			;break;
+		case "CREATEUSER"	: p.addUser(mBody)			;break;
 		case "ACCEPTED"		: p.updateVolunteer(mBody);	;break;
 		case "MODUSER"		: p.updateUserData(mBody);	;break;
 		default 			: break;
@@ -174,7 +174,7 @@ public void decodeMsg(String jstring, ProjectHead p){
 		case "MESSAGE"		: p.addMessages(mBody)		;break;
 		case "PROJECT"		: p.addProject(mBody)		;break;
 		case "EVENT"		: p.addEvents(mBody)		;break;
-		case "PERSONFILE"	: p.addUser(mBody)			;break;
+		case "CREATEUSER"	: p.addUser(mBody)			;break;
 		case "ACCEPTED"		: p.updateVolunteer(mBody)	;break;
 		case "MODUSER"		: p.updateUserData(mBody);	;break;
 		case "PROJREQ"		: p.addVolunteerProjectRequests(mBody) ;break; 
@@ -204,7 +204,7 @@ public void decodeMsg(String jstring, Volunteer p){
 		case "MESSAGE"		: p.addMessages(mBody)		;break;
 		case "PROJECT"		: p.addProject(mBody)		;break;
 		case "EVENT"		: p.addEvents(mBody)		;break;
-		case "PERSONFILE"	: p.addUser(mBody)			;break;
+		case "CREATEUSER"	: p.addUser(mBody)			;break;
 		case "ACCEPTED"		: p.updateVolunteer(mBody);	;break;
 		case "MODUSER"		: p.updateUserData(mBody);	;break;
 		default 			: break;
