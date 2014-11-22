@@ -44,5 +44,43 @@ public class MessageHelper {
 		return new Message[]{};
 	}
 	
+	public static Message[] RetrieveRecentMessagesArray(int days){
+		
+		try {
+			List<Message> ret = new ArrayList<Message>();
+			GmailUtilities gmail = new GmailUtilities();
+			gmail.init();
+			String[] mbodys = gmail.printRecentMessages(days);
+			for(int i=0;i<mbodys.length;i++){
+				Message m = new Message();
+				m=m.decodeJson(mbodys[i]);
+				ret.add(m);
+			}
+			return (Message[]) ret.toArray();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new Message[]{};
+	}
 
+	public static String[] RetrieveRecentMessages(int days){
+		
+		try {
+			List<String> ret = new ArrayList<String>();
+			GmailUtilities gmail = new GmailUtilities();
+			gmail.init();
+			String[] mbodys = gmail.printRecentMessages(days);
+			for(int i=0;i<mbodys.length;i++){
+				ret.add(mbodys[i]);
+			}
+			return (String[]) ret.toArray();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new String[]{};
+	}
+
+	
 }

@@ -15,5 +15,14 @@ public class PersonTest extends TestCase{
 										.buildPerson()
 										.getName());
 	}
+	
+	public void testAppendToDatabase(){
+		String[] cred = new String[]{"hallo","world"};
+		assertEquals(1, new  PersonBuilder()
+							.Name("StringTest")
+							.Credentials(cred)
+							.buildPerson()
+							.appendToDatabase("appendTest", "testing lol"));
+	}
 }
 	

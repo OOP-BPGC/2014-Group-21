@@ -205,7 +205,7 @@ public int addMessageToDatabase(Designation x,String finalmessage) {
 public int addMessageToDatabaseTEST(Designation x,String finalmessage) {
 	if (x == Designation.CORE){
 		Core tempCore = new Core();
-		return tempCore.appendToDatabase("messagedatabasetest", finalmessage);
+		return tempCore.appendToDatabase("messagedatabaseTEST", finalmessage);
 	}
 	else return 0;
 }  

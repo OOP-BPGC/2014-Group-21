@@ -1,10 +1,20 @@
 package Base_Classes;
 
 import java.io.File;
+import javax.crypto.*;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.security.AlgorithmParameters;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.AlgorithmParameterSpec;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 import tests.MessageBuilder;
@@ -374,8 +384,9 @@ public class Core extends Person {
 			String usrnm = scan.nextLine();
 			System.out.println("Enter the password : ");
 			String pswrd = scan.nextLine();
+			
 			String[] cred = new String[]{usrnm,pswrd};
-			if (intinput == 1){
+			if (intinput == 1){ 
 				Volunteer a = new Volunteer(name, ID, Designation.VOLUNTEER, phNo, "_", cred);
 				JString = gson.toJson(a);
 				type = "VOL";

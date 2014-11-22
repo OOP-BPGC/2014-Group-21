@@ -16,12 +16,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 /** 
- * The base class inheritted by Volunteer, ProjectHead and Core. Contains use cases and 
+ * The base class inherited by Volunteer, ProjectHead and Core. Contains use cases and 
  * attributes common to all three derived classes.
  * @author Rohit Pandey
  */
 
-public class Person {
+public class Person implements Cloneable{
 
 	/**
 	 * Each class corresponding to a designation, as well as all data sent and received, 
@@ -42,6 +42,10 @@ public class Person {
 	  protected String[] Credentials;
 	  
 	  public static boolean hasProject = false;
+	  
+	  public Person clone() throws CloneNotSupportedException{
+		  return (Person)super.clone();
+	  }
 	  	
 
 	public Person(String name, String iDNumber, Designation designation,

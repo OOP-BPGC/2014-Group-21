@@ -26,6 +26,7 @@ public class Driver {
 		int flag = 0;
 		int tries = 1;
 		int flagcred = 0;
+		
 		String oldDataFile = null;
 		do {
 			Scanner inputs = new Scanner(System.in);
@@ -80,12 +81,12 @@ public class Driver {
 		 * NOW WE CHECK FOR VALID DATA
 		 */
 		if (JString == "" || type == "" || flag != 1 ){
-			System.out.println("No matches found... Exiting Software.");
+			System.out.println("No matches found... Exiting...");
 			return;
 		}
 		
 		if (type.contains("CORE")) {
-			Core a = gson.fromJson(JString, Core.class);			
+			Core a = gson.fromJson(JString, Core.class);	
 			CoreMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
 //			String finalmessage = getNewData(oldDataFile, a);
@@ -148,7 +149,7 @@ public class Driver {
 		}
 		else {
 			while(loop) {
-				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messaes \n4. Check Events\n5. Exit");
+				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messages \n4. Check Events\n5. Exit");
 				choice = scan.nextInt();
 				switch (choice) {
 					case 1: volunteer.getProjects(volunteer.desig, "projectlist"); break;  //DONE
