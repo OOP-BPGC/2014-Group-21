@@ -75,6 +75,8 @@ public class ProjectHead extends Person {
 		 * 
 		 */
 		try {
+			System.out.println("\n=======================================================================\n");
+			System.out.println("Project Request screen. Please follow the instructions.");
 			File file1 = new File("volunteerprojectrequests.txt");
 			Scanner in = new Scanner(file1);
 			String op = "";

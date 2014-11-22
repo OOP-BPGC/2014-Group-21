@@ -17,7 +17,7 @@ import com.google.gson.Gson;
  * Logs the user in, and presents a list of actions.
  * Checks the user's name, username and password against the list of users stored in user.txt, and logs them in. Depending on their
  * designation, and whether they are working for a project, a menu-driven loop is presented with the corresponding options.
- * @author Shatrujit Aditya Kumar
+ * @author Shatrujit Aditya Kumar, Rohit Pandey
  */
 
 public class Driver {
@@ -96,10 +96,14 @@ public class Driver {
 		}
 		
 		if (type.contains("CORE")) {
-			Core a = gson.fromJson(JString, Core.class);	
-				/*String[] msgs =  MessageHelper.RetrieveRecentMessages(6);
-				Message m = new Message();
-				m.decodeMsg(msgs[i], a);*/
+			Core a = gson.fromJson(JString, Core.class);
+			/*
+			String[] msgs =  MessageHelper.RetrieveRecentMessages(4);
+			Message m = new Message();
+			for (int i=0;i<msgs.length;i++){
+				m.decodeMsg(msgs[i], a);
+			}
+			*/
 			CoreMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
 //			String finalmessage = getNewData(oldDataFile, a);
@@ -107,32 +111,44 @@ public class Driver {
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-			MessageHelper.SendMessage(a, mess);
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
+			MessageHelper.SendMessage(a, mess);
 		}
 		else if (type.contains("PH")) {
-			ProjectHead a = gson.fromJson(JString, ProjectHead.class);		
+			ProjectHead a = gson.fromJson(JString, ProjectHead.class);
+			/*
+			String[] msgs =  MessageHelper.RetrieveRecentMessages(4);
+			Message m = new Message();
+			for (int i=0;i<msgs.length;i++){
+				m.decodeMsg(msgs[i], a);
+			}
+			*/
 			PHMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
-//			String finalmessage = getNewData(oldDataFile, a);
 			String vegastag = "VEGAS@SAVEG";
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-			MessageHelper.SendMessage(a, mess);
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
+			MessageHelper.SendMessage(a, mess);
 		}
 		else if (type.contains("VOL")){
-			Volunteer a = gson.fromJson(JString, Volunteer.class);		
+			Volunteer a = gson.fromJson(JString, Volunteer.class);
+			/*
+			String[] msgs =  MessageHelper.RetrieveRecentMessages(4);
+			Message m = new Message();
+			for (int i=0;i<msgs.length;i++){
+				m.decodeMsg(msgs[i], a);
+			}
+			*/
 			VolunteerMenu(a);
 			String newDataFile = getNewData(oldDataFile, a);
-//			String finalmessage = getNewData(oldDataFile, a);
 			String vegastag = "VEGAS@SAVEG";
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-			MessageHelper.SendMessage(a, mess);
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
+			MessageHelper.SendMessage(a, mess);
 		}
 		
 		else{
@@ -229,13 +245,15 @@ public class Driver {
 	
 	/**
 	 * Returns a String after adding the Object a to the String oldDataFile as a JSon string.
-	 * @param oldDataFile
-	 * @param a
+	 * @param String oldDataFile
+	 * @param Core a
+	 * 
+	 * @return String newmessage
 	 */ 
 
 	public static String getNewData(String oldDataFile, Volunteer a){
 		/*
-		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
+		 *  To save the data into memory and to broadcast it so that others' data can be updated.
 		 */
 		if (oldDataFile == null) return null;
 		Gson gson2 = new Gson();
@@ -248,13 +266,15 @@ public class Driver {
 	
 	/**
 	 * Returns a String after adding the Object a to the String oldDataFile as a JSon string.
-	 * @param oldDataFile
-	 * @param a
+	 * @param String oldDataFile
+	 * @param Core a
+	 * 
+	 * @return String newmessage
 	 */ 
 	
 	public static String getNewData(String oldDataFile, ProjectHead a){
 		/*
-		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
+		 *  To save the data into memory and to broadcast it so that others' data can be updated.
 		 */
 		if (oldDataFile == null) return null;
 		Gson gson2 = new Gson();
@@ -267,13 +287,15 @@ public class Driver {
 	
 	/**
 	 * Returns a String after adding the Object a to the String oldDataFile as a JSon string.
-	 * @param oldDataFile
-	 * @param a
+	 * @param String oldDataFile
+	 * @param Core a
+	 * 
+	 * @return String newmessage
 	 */ 
 	
 	public static String getNewData(String oldDataFile, Core a){
 		/*
-		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
+		 *  To save the data into memory and to broadcast it so that others' data can be updated.
 		 */
 		if (oldDataFile == null) return null;
 		Gson gson2 = new Gson();
