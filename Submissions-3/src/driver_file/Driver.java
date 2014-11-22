@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 public class Driver {
 	
 	static boolean hasProject;
-	static Scanner scan;
+	public static Scanner scan;
 	static Designation desig;
 	
 	/**
@@ -36,6 +36,7 @@ public class Driver {
 		int flag = 0;
 		int tries = 1;
 		int flagcred = 0;
+		scan = new Scanner (System.in);
 		
 		String oldDataFile = null;
 		do {
@@ -124,7 +125,7 @@ public class Driver {
 			String vegastag = "VEGAS@SAVEG";
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
-			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(a.Name).buildMessage();
+			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(a.getCredentials()[0]).buildMessage();
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 			MessageHelper.SendMessage(a, mess);
 		}
@@ -141,6 +142,7 @@ public class Driver {
 			String finalmessage = "MODUSER@@@@" + vegastag + oldDataFile + vegastag + newDataFile + vegastag;
 			String[] delim = finalmessage.split("@@@@");
 			String[] n = new String[]{"a"};
+//			Message mess = new Message("DATE", "finalmessage","Y",1, n);
 			Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(a.getCredentials()[0]).buildMessage();
 			Person.ReplaceInDatabase("userlist", newDataFile, oldDataFile);
 			MessageHelper.SendMessage(a, mess);
@@ -163,7 +165,7 @@ public class Driver {
 		if (volunteer.hasProject == false) {
 			while(loop) {
 				System.out.println("\n1. List Projects\n2. Check Messages \n3. Check Events\n4. Exit");
-				choice = scan.nextInt();
+				choice = Integer.parseInt(scan.nextLine());
 				switch (choice) {
 					case 1: volunteer.getProjects(volunteer.desig, "projectdatabase"); break;  //DONE
 					case 2: volunteer.listMessages(); break;  //DONE
@@ -176,7 +178,7 @@ public class Driver {
 		else {
 			while(loop) {
 				System.out.println("\n1. List Projects\n2. Current Project Details\n3. Check Messages \n4. Check Events\n5. Exit");
-				choice = scan.nextInt();
+				choice = Integer.parseInt(scan.nextLine());
 				switch (choice) {
 					case 1: volunteer.getProjects(volunteer.desig, "database"); break;  //DONE
 					case 2: System.out.println("Your current project is : "+volunteer.getCurrentProject()); 
@@ -200,11 +202,11 @@ public class Driver {
 		int choice;
 		while(loop) {
 			System.out.println("\n1.Approve Volunteer Request(s)\n2. List Projects\n3. Current Project Details\n4. Check Messages \n5. Check Events\n6. Exit");
-			choice = scan.nextInt();
+			choice = Integer.parseInt(scan.nextLine());
 			switch (choice) {
 				case 1: projectHead.handleProjectRequests(); break;
 				case 2: projectHead.getProjects(projectHead.desig, "projectdatabase"); break; //DONE
-				case 3: projectHead.getProjectName(); break; //Need details apart from name
+				case 3: System.out.println("The Current Project that you are working on is "+projectHead.ProjectName); break; //Need details apart from name
 				case 4: projectHead.listMessages(); break;
 				case 5: projectHead.listEvents(); break; //DONE  listEvents is in Person class
 				case 6: loop = false; break;
@@ -219,11 +221,12 @@ public class Driver {
 	
 	public static void CoreMenu(Core core) {
 		boolean loop = true;
-		scan = new Scanner(System.in);
+
 		int choice;
 		while(loop) {
-			System.out.println("\n1. List Projects\n2. Create Project\n3. Create a new Project\n4. Schedule Event\n5. Create Member\n6. Check Messages \n7. Check Events\n8. Exit");
-			choice = scan.nextInt();
+			System.out.println("\n1. List Projects\n2. Create Project\n3. Create a new Message\n4. Schedule Event\n5. Create Member\n6. Check Messages \n7. Check Events\n8. Exit");
+//			choice = 2;
+			choice = Integer.parseInt(scan.nextLine());
 			switch (choice) {
 				case 1: core.getProjects(); break; //DONE
 				case 2: core.CreateProject(); break; // DONE
