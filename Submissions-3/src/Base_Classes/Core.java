@@ -144,7 +144,7 @@ public class Core extends Person {
 		  System.out.println("Enter event location: ");
 		  event.setLocation(in.nextLine());
 		  event.setOrganiser(this.Name);
-		  in.close();
+//		  in.close();
 		   //This method needs to be written
 		  String finalmessage = event.encodeEvent();
 		  int y = 42;
@@ -196,7 +196,7 @@ public class Core extends Person {
 		  sc.nextLine();
 		  System.out.printf("Type in the first event name : ");
 		  String eventName = sc.nextLine();
-		  sc.close();
+//		  sc.close();
 		  Project proj = new Project(name,schedule,proj_head,numvolunteers,eventName);
 		  String finalmessage = proj.encodeProject();
 		  int y = 42;
