@@ -4,26 +4,26 @@
 Name			Student ID		Roles		Role-based 		Overall
 								Contribution(%) 	Contribution(%)
 --------------------------------------------------------------------------------------------------------
-Anshul R      		2013A7PS114G            Unit Tests          80%                    15%
+Anshul R      		2013A7PS114G            Unit Tests          80%                    16%
 						Testing             80%  
 						Code Dev.	    10%
 						Proj. Requirements  30%			    			
 
-Janani Durairaj	        2012B1A7735G  		CRC cards 	    50%                     15%
+Janani Durairaj	        2012B1A7735G  		CRC cards 	    50%                     16%
 						Use cases 	    50% 	
 
-Vishnu Nair	        2012A3PS079		CRC cards 	    50%                     15%
+Vishnu Nair	        2012A3PS079		CRC cards 	    50%                     16%
 						Use cases 	    50%
 						JavaDocs	    15%
 
-Aditya Singh		2013A7PS098G		UML		    70%			    15%
+Aditya Singh		2013A7PS098G		UML		    70%			    10%
 						
 
-Shatrujit Kumar		2013A7PS044G		Code Dev.	    15%			    15%
+Shatrujit Kumar		2013A7PS044G		Code Dev.	    15%			    16%
 						JavaDocs	    85%	
 						Unit Tests	    20%		
 
-Rohit Pandey		2013A7PS711G		Proj. Requirements  55%			    15%
+Rohit Pandey		2013A7PS711G		Proj. Requirements  55%			    16%
 						Code Dev.   	    75%		
 						Testing		    20%
 
