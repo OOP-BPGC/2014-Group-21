@@ -68,7 +68,7 @@ public class MessageHelper {
 			return (Message[]) ret.toArray();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Error in retrieving messages. Check the connectivity.");
 		}
 		return new Message[]{};
 	}
@@ -86,7 +86,7 @@ public class MessageHelper {
 			return (String[]) ret.toArray();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Error in retrieving messages. Check the connectivity.");
 		}
 		return new String[]{};
 	}
