@@ -16,7 +16,7 @@ Vishnu Nair	        2012A3PS079		CRC cards 	    50%                     16%
 						Use cases 	    50%
 						JavaDocs	    15%
 
-Aditya Singh		2013A7PS098G		UML		    70%			    10%
+Aditya Singh		2013A7PS098G		UML		    50%			    10%
 						
 
 Shatrujit Kumar		2013A7PS044G		Code Dev.	    15%			    16%
