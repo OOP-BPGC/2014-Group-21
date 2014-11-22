@@ -20,6 +20,8 @@ import java.util.Scanner;
 import tests.MessageBuilder;
 import com.google.gson.Gson;
 
+import driver_file.Driver;
+
 import Base_Classes.Project;
 
 /**
@@ -153,7 +155,7 @@ public class Core extends Person {
 		  else{
 			  //pass finalmessage to message sender class
 			  String[] delim = finalmessage.split("@@@@");
-			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(this.getCredentials()[0]).buildMessage();
 			  y = MessageHelper.SendMessage(this, mess);
 		  }
 		  if (y==1){
@@ -204,16 +206,13 @@ public class Core extends Person {
 		  }
 		  else{
 			  String[] delim = finalmessage.split("@@@@");
-			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(this.getCredentials()[0]).buildMessage();
 			  y = MessageHelper.SendMessage(this, mess);
 			  
 		  }
 		  if (y==1){
 			  y = proj.addProjectToDatabase(this.desig,finalmessage);
 			  //pass finalmessage to message sender class
-			  String[] delim = finalmessage.split("@@@@");
-			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-			  MessageHelper.SendMessage(this, mess);
 			  System.out.println("Message has been sent");
 		  }
 		  else {
@@ -283,12 +282,10 @@ public class Core extends Person {
 		  Date date = new Date();
 		  m.setDate(dateFormat.format(date).toString());
 		  int i=0;
-		  do {
-			  System.out.printf("Enter the minimum privilege level.\n\t3 --> CORE\n\t 2-->PROJECT_HEAD\n\t1 --> VOLUNTEERS");
-			  i = sc.nextInt();
-			  
-		  } while(i!=1 || i!=2 || i!=3);
-		  
+		  System.out.println("Enter the minimum privilege level.\n\t3 --> CORE\n\t2 --> PROJECT_HEAD\n\t1 --> VOLUNTEERS\n");
+		  i = Integer.parseInt(sc.nextLine());
+		  if (i<1 || i>3) 
+			  i =1;
 		  m.setMin_Privilege_Level(i);
 		  String finalmessage = m.encodeMsg(m);
 		  int y = 42;
@@ -298,7 +295,7 @@ public class Core extends Person {
 		  }
 		  else{
 			  String[] delim = finalmessage.split("@@@@");
-			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(this.getCredentials()[0]).buildMessage();
 			  y = MessageHelper.SendMessage(this, mess);
 		  }
 		  if (y==1){
@@ -385,7 +382,7 @@ public class Core extends Person {
 		}
 		// NOW WE SEARCH FOR DUPLICATE ELEMENTS
 		int flag;
-		scan.close();
+//		scan.close();
 		try {
 			File file = new File("userlist.txt");
 			Scanner checker = new Scanner(file);
@@ -414,10 +411,10 @@ public class Core extends Person {
 		 */
 		  int y;
 		  String[] delim = finalmessage.split("@@@@");
-		  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+		  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).from(this.getCredentials()[0]).buildMessage();
 		  y = MessageHelper.SendMessage(this, mess);
 		  if (y == 1){
-			  this.appendToDatabase("userlist", finalmessage);
+			  this.appendToDatabase("userlist", newmessage);
 			  System.out.println("User has been created. Database has been updated.");
 		  }
 		  else{
