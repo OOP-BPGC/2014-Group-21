@@ -50,7 +50,7 @@ public class Login {
 				try {
 					Login window = new Login();
 					window.frmLoginNirmaan.setVisible(true);
-					Arrays.toString(MessageHelper.RetrieveRecentMessages(5));
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

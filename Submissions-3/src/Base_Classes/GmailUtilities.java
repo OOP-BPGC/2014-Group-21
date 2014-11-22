@@ -81,7 +81,7 @@ public class GmailUtilities {
         try {
             
             folder.open(Folder.READ_WRITE);
-
+            
             
         } catch (MessagingException ex) {
             
@@ -141,6 +141,8 @@ public class GmailUtilities {
     public void printAllMessages() throws Exception {
      
         // Attributes & Flags for all messages ..
+    	
+    	
         Message[] msgs = folder.getMessages();
         
         // Use a suitable FetchProfile
@@ -169,14 +171,16 @@ public class GmailUtilities {
         List<String> retval = new ArrayList<String>();
         Message[] m = new Message[msgs.length];
         for (int i = 0; i < msgs.length; i++) {
-            System.out.println("--------------------------");
-            System.out.println("MESSAGE #" + (i + 1) + ":");
+            /*System.out.println("--------------------------");
+            System.out.println("MESSAGE #" + (i + 1) + ":");*/
             if(	Days.daysBetween(new DateTime(msgs[i].getSentDate()), new DateTime(new Date())).getDays() <= days ){
-            retval.add((String)msgs[i].getContent());
-            dumpPart(msgs[i]);}
+            if(msgs[i].isMimeType("text/plain")) retval.add((String)msgs[i].getContent());
+            //dumpPart(msgs[i]);
+            }
         }
-        
-        return (String[]) retval.toArray();
+        String[] ret = new String[retval.size()];
+        retval.toArray(ret);
+        return ret.clone();
     }
     
     
@@ -246,15 +250,16 @@ public class GmailUtilities {
         System.out.println(s);
     }
     
-    GmailUtilities gmail;
+    
+    
    public void init() {
         
         try {
             
-            gmail = new GmailUtilities();
-            gmail.setUserPass(" oopnirmaan@gmail.com", "qwertyasdf1234");
-            gmail.connect();
-            gmail.openFolder("INBOX");
+           
+            this.setUserPass(" oopnirmaan@gmail.com", "qwertyasdf1234");
+            this.connect();
+            this.openFolder("INBOX");
            
             //gmail.printAllMessageEnvelopes();
             //gmail.printRecentMessages(-1);
@@ -266,11 +271,15 @@ public class GmailUtilities {
         
     }
    
+ 
+   
+   
    /***
     * Validates given user name and password
     * @param usr Username
     * @param pwd Password
     */
+   
    
    public static boolean checkCredentials(String usr, String pwd) {
 	   GmailUtilities g = new GmailUtilities();

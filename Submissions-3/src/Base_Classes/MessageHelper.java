@@ -2,7 +2,7 @@ package Base_Classes;
 
 /**
  * Contains methods to send messages, and retrieve and read recent messages.
- * @author Anshul Ravichandran
+ * @author Anshul Ravichandar
  */
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class MessageHelper {
 			return (Message[]) ret.toArray();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Error in retrieving messages. Check the connectivity.");
+			e.printStackTrace();
 		}
 		return new Message[]{};
 	}
@@ -79,14 +79,16 @@ public class MessageHelper {
 			List<String> ret = new ArrayList<String>();
 			GmailUtilities gmail = new GmailUtilities();
 			gmail.init();
-			gmail.printAllMessages(); //String[] mbodys = printRecentMessages(days);
-			/*for(int i=0;i<mbodys.length;i++){
+			String[] mbodys = gmail.printRecentMessages(days);
+			for(int i=0;i<mbodys.length;i++){
 				ret.add(mbodys[i]);
-			}*/
-			return (String[]) ret.toArray();
+			}
+			 String[] retval = new String[ret.size()];
+		      ret.toArray(retval);
+			return retval.clone();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("Error in retrieving messages. Check the connectivity.");
+			e.printStackTrace();
 		}
 		return new String[]{};
 	}
