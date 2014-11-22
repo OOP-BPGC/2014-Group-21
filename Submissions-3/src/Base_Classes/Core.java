@@ -100,16 +100,20 @@ public class Core extends Person {
 		String pname = "";
 		String phead = "";
 		String[] splitstrings;
-		int i =1;
-		System.out.println("\t  Project Name\t\tProject Head");
+		int i =1;	
 		while (scan.hasNextLine()){
+			if (i == 1){
+				System.out.println("===================================================================");
+				System.out.println("\t  Project Name\t\tProject Head");
+			}
 			copied = scan.nextLine();
 			splitstrings = copied.split("@@@@");
 			pname = splitstrings[1];
 			phead = splitstrings[2];
-			System.out.println("\t"+(i++)+". "+pname+"\t    "+phead);
+			System.out.println("\t"+(i++)+". "+pname+"\t            "+phead);
 		}
 		scan.close();
+		System.out.println("===================================================================");
 		return;
 	}
 	
@@ -124,7 +128,10 @@ public class Core extends Person {
 	 * Creates a new event.
 	 */
 	
-	  public void CreateEvent() {
+	  @SuppressWarnings("static-access")
+	public void CreateEvent() {
+		  System.out.println("\n==================================================================");
+		  System.out.println("Create Event Screen. Enter the following details... \n\n");
 		  Scanner in = new Scanner(System.in);
 		  Event event = new Event();
 		  System.out.println("Enter event name: ");
@@ -144,19 +151,20 @@ public class Core extends Person {
 			  return;
 		  }
 		  else{
-			  y = event.addEventToDatabases(this.desig, finalmessage);
-		  }
-		  if (y==1){
 			  //pass finalmessage to message sender class
 			  String[] delim = finalmessage.split("@@@@");
 			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-			  MessageHelper.SendMessage(this, mess);
+			  y = MessageHelper.SendMessage(this, mess);
+		  }
+		  if (y==1){
+			  y = event.addEventToDatabases(this.desig, finalmessage);
 			  System.out.println("Message has been sent");
 		  }
 		  else {
 			  System.out.println("SOME ERROR OCCURED, TRY AGAIN");
 			  return;
 		  }
+		  System.out.println("\n==================================================================\n");
 	  }
 	  
 	  /**
@@ -164,40 +172,29 @@ public class Core extends Person {
 	   */
 
 	  public void CreateProject() {
+		  System.out.println("\n\n==================================================================");
+		  System.out.println("Create Project screen. Enter the following details... \n");
 		  Scanner sc = new Scanner(System.in);
-		  System.out.println("Please enter the name of the project");
+		  System.out.printf("Please enter the name of the project : ");
 		  String name = sc.nextLine();
-		  System.out.println("Please enter the Days for project");
+		  System.out.printf("Please enter the days for project : ");
 		  String schedule = sc.nextLine();
 //		  System.out.printf("Do you want to assign Project Head? (Y for yes and N for No) : ");
-		  System.out.printf("Enter the name of the Project Manager");
+		  System.out.printf("Enter the name of the Project Manager : ");
 		  String proj_head; // Need to check with the database
-		  proj_head = sc.nextLine();
-/*		  while (1 == 1){
-			  char dec = sc.next().trim().charAt(0);
-			  if (dec == 'Y' || dec == 'y'){
-				  System.out.printf("Enter the name of the Project Head : ");
-				  proj_head = sc.nextLine();
-				  break;
-			  }
-			  else if (dec == 'n' || dec =='N'){
-				  System.out.printf("Name of Poject Head not entered");
-				  proj_head = "";
-				  break;
-			  }
-			  System.out.println("Please enter name only in the correct format now");
-		  }
-*/		  
+		  proj_head = sc.nextLine();		  
 		  int numvolunteers;
-		  while(1==1){
-			  System.out.printf("Enter the number of volunteers (min = 1, max = 10 :");
+		  while(true){
+			  System.out.printf("Enter the number of volunteers (min = 1, max = 10 : ");
 			  numvolunteers = sc.nextInt();
 			  if (numvolunteers < 10 && numvolunteers > 0){
 				  break;
 			  }
 		  }   // RIGHT NOW, ONLY METHOD TO KEEP THE NUMBER OF VOLUNTEERS HAS BEEN MADE. CHECK ON NAMES AS WELL.
+		  sc.nextLine();
 		  System.out.printf("Type in the first event name : ");
 		  String eventName = sc.nextLine();
+		  sc.close();
 		  Project proj = new Project(name,schedule,proj_head,numvolunteers,eventName);
 		  String finalmessage = proj.encodeProject();
 		  int y = 42;
@@ -206,9 +203,13 @@ public class Core extends Person {
 			  return;
 		  }
 		  else{
-			  y = proj.addProjectToDatabase(this.desig,finalmessage);
+			  String[] delim = finalmessage.split("@@@@");
+			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
+			  y = MessageHelper.SendMessage(this, mess);
+			  
 		  }
 		  if (y==1){
+			  y = proj.addProjectToDatabase(this.desig,finalmessage);
 			  //pass finalmessage to message sender class
 			  String[] delim = finalmessage.split("@@@@");
 			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
@@ -217,10 +218,8 @@ public class Core extends Person {
 		  }
 		  else {
 			  System.out.println("SOME ERROR OCCURED, TRY AGAIN");
-			  return;
 		  }
-		  
-		  
+		  System.out.println("\n==================================================================\n");
 	  }
 
  //REMOVE AFTER UNIT TESTING
@@ -266,6 +265,8 @@ public class Core extends Person {
 	   */
 	  
 	  public void CreateMessage() {
+		  System.out.println("\n\n==================================================================");
+		  System.out.println("Create Message screen. Enter the following details... \n\n");
 		  Message m = new Message();
 		  Scanner sc = new Scanner(System.in);
 		  String s;
@@ -296,41 +297,21 @@ public class Core extends Person {
 			  return;
 		  }
 		  else{
-			  y = m.addMessageToDatabase(this.desig,finalmessage); //Returns 1
-		  }
-		  if (y==1){
 			  String[] delim = finalmessage.split("@@@@");
 			  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-			  MessageHelper.SendMessage(this, mess);
+			  y = MessageHelper.SendMessage(this, mess);
+		  }
+		  if (y==1){
+			  y = m.addMessageToDatabase(this.desig,finalmessage); //Returns 1
 			  System.out.println("Message has been sent");
 		  }
 		  else {
 			  System.out.println("SOME ERROR OCCURED, TRY AGAIN");
-			  return;
 		  }
+		  System.out.println("\n\n==================================================================\n");
+
 	  }
-	/*  
-	  public void  manageEvent(){
-		  System.out.println("Enter the name of the event that you want to manage.");
-		  Scanner sc = new Scanner(System.in);
-		  String str = sc.nextLine();
-		  File file1 = new File("coreeventlist.txt");
-		  Scanner scan2 = new Scanner(file1);
-		  String stringtemp = "";
-		  int flag = 0;
-		  PrintWriter f = new PrintWriter("tempcoreeventlist.txt");
-		  while(scan2.hasNextLine()){
-			  stringtemp = scan2.nextLine();
-			  String[] splitstream = stringtemp.split("@@@@");
-			  if (splitstream[3].contains(str)){
-				  
-				  flag = 1;
-			  }
-		  }
-		  
-	  }
-	*/  
-	  
+
 		/**
 		 * Adds a string to the message database, provided the user has the appropriate 
 		 * PRIVILEGELEVEL.
@@ -362,18 +343,22 @@ public class Core extends Person {
 	
 	public void CreateUser() {
 		// TODO to create a new user
+		System.out.println("\n\n==================================================================");
+		System.out.println("Create User screen. Enter the following details... ");
 		String newmessage;
 		Scanner scan = new Scanner(System.in);
 		Gson gson = new Gson();
-		String JString, type;
+		String JString = "", type = "";
 		String stringinput;
 		System.out.println("Enter the type of user: \n1. Volunteer \n2. Project Head\nPress any other number to EXIT");
-		int intinput = scan.nextInt();
+		int intinput = scan.nextInt(); scan.nextLine();
 		if (intinput != 1 && intinput != 2){
 			System.out.println("Exiting now...\n");
 			return;
 		}
 		else {
+			if (intinput == 1) System.out.println("\nCreating a Volunteer.\n");
+			else System.out.println("\nCreating a Project Head.\n");
 			System.out.println("Enter the name : ");
 			String name = scan.nextLine();
 			System.out.println("Enter the ID Number : ");
@@ -391,7 +376,7 @@ public class Core extends Person {
 				JString = gson.toJson(a);
 				type = "VOL";
 			}
-			else{
+			else if (intinput == 2){
 				ProjectHead a = new ProjectHead(name, ID, Designation.PROJECT_HEAD,phNo,"_",cred);
 				JString = gson.toJson(a);
 				type = "PH";
@@ -400,12 +385,13 @@ public class Core extends Person {
 		}
 		// NOW WE SEARCH FOR DUPLICATE ELEMENTS
 		int flag;
+		scan.close();
 		try {
 			File file = new File("userlist.txt");
 			Scanner checker = new Scanner(file);
 			flag = 0;
 			while (checker.hasNextLine()){
-				if (checker.nextLine() == newmessage){
+				if (checker.nextLine().contains(newmessage)){
 					flag++;
 				}
 			}
@@ -426,9 +412,19 @@ public class Core extends Person {
 		/*
 		 * PASS THIS TO GET BROADCASTED. Making a message object.
 		 */
+		  int y;
 		  String[] delim = finalmessage.split("@@@@");
 		  Message mess = new MessageBuilder().tag(delim[0]).body(finalmessage).buildMessage();
-		  MessageHelper.SendMessage(this, mess);
+		  y = MessageHelper.SendMessage(this, mess);
+		  if (y == 1){
+			  this.appendToDatabase("userlist", finalmessage);
+			  System.out.println("User has been created. Database has been updated.");
+		  }
+		  else{
+			  System.out.println("User could not be created. Please check the system and try again.");
+ 
+		  }
+		  System.out.println("\n\n==================================================================\n");
 	}
 
 	

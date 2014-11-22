@@ -1,5 +1,9 @@
 package Base_Classes;
 
+/**
+ * Contains methods to send messages, and retrieve and read recent messages.
+ * @author Anshul Ravichandran
+ */
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,15 +15,20 @@ import org.joda.time.Days;
 
 public class MessageHelper {
 
-	public static void SendMessage(Person sender, Message m){
-		
-		
-				String user, pwd;
-				user = sender.getCredentials()[0];
-				pwd = sender.getCredentials()[1];
-				// Subject will be set to current date by the class that uses it
-				GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
-			
+	public static int SendMessage(Person sender, Message m){
+		String user, pwd;
+		user = sender.getCredentials()[0];
+		pwd = sender.getCredentials()[1];
+		// Subject will be set to current date by the class that uses it
+		try {
+			GmailUtilities.sendEmail(m.From,"oopnirmaan@gmail.com", new Date().toString(), m.encodeObj(m), user, pwd);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error in sending data. Internet connection required. Exiting without saving data.");
+			return 0;
+		}
+		return 1;
+
 	}
 	
 	

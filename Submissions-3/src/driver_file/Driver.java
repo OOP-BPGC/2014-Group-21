@@ -1,6 +1,5 @@
 package driver_file;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -13,12 +12,22 @@ import Base_Classes.*;
 
 import com.google.gson.Gson;
 
+/**
+ * Logs the user in, and presents a list of actions.
+ * Checks the user's name, username and password against the list of users stored in user.txt, and logs them in. Depending on their
+ * designation, and whether they are working for a project, a menu-driven loop is presented with the corresponding options.
+ * @author Shatrujit Aditya Kumar
+ */
+
 public class Driver {
 	
 	static boolean hasProject;
 	static Scanner scan;
 	static Designation desig;
 	
+	/**
+	 * Verifies login and calls the appropriate method to display the menu.
+	 */
 	public static void main(String[] args) {							
 		Gson gson = new Gson();											
 		String JString = "";
@@ -129,7 +138,9 @@ public class Driver {
 		}
 		return;
 	}
-	
+	/**
+	 * Menu-driven loop for Volunteer Designation.
+	 */
 	public static void VolunteerMenu(Volunteer volunteer) {
 		boolean loop = true;
 		scan = new Scanner(System.in);
@@ -164,6 +175,10 @@ public class Driver {
 		}
 	}
 	
+	/**
+	 * Menu-driven loop for Project Head Designation.
+	 */
+	
 	public static void PHMenu(ProjectHead projectHead) {
 		boolean loop = true;
 		scan = new Scanner(System.in);
@@ -183,6 +198,10 @@ public class Driver {
 		}
 	}
 
+	/**
+	 * Menu-driven loop for Core Designation.
+	 */
+	
 	public static void CoreMenu(Core core) {
 		boolean loop = true;
 		scan = new Scanner(System.in);
@@ -203,6 +222,13 @@ public class Driver {
 			}
 		}
 	}
+	
+	/**
+	 * Returns a String after adding the Object a to the String oldDataFile as a JSon string.
+	 * @param oldDataFile
+	 * @param a
+	 */ 
+
 	public static String getNewData(String oldDataFile, Volunteer a){
 		/*
 		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
@@ -216,6 +242,12 @@ public class Driver {
 		
 	}
 	
+	/**
+	 * Returns a String after adding the Object a to the String oldDataFile as a JSon string.
+	 * @param oldDataFile
+	 * @param a
+	 */ 
+	
 	public static String getNewData(String oldDataFile, ProjectHead a){
 		/*
 		 *  To save the serdata into memory and to broadcast it so that others' data can be updated.
@@ -228,6 +260,12 @@ public class Driver {
 		return newDataFile;
 		
 	}
+	
+	/**
+	 * Returns a String after adding the Object a to the String oldDataFile as a JSon string.
+	 * @param oldDataFile
+	 * @param a
+	 */ 
 	
 	public static String getNewData(String oldDataFile, Core a){
 		/*
