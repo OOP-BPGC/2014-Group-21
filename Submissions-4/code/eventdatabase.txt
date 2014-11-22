@@ -1,0 +1,11 @@
+EVENT@@@@Party Beast@@@@New Year's Eve party@@@@{"Name":"New Year\u0027s Eve party","Location":"Baga Beach, Goa","Date":"31/12/2014","Organiser":"Party Beast","ContactNumber":"9999999999"}
+EVENT@@@@Tulasi Ravindran@@@@Clothes Collection Drive@@@@{"Name":"Clothes Collection Drive","Location":"BITS Goa","Date":"22/03/2015","Organiser":"Tulasi Ravindran","ContactNumber":"888888888"}
+EVENT@@@@Shatrujit A Kumar@@@@Shiksha Inductions@@@@{"Name":"Shiksha Inductions","Location":"A-502","Date":"24/05/2015","Organiser":"Shatrujit A Kumar","ContactNumber":"94961651689"}
+EVENT@@@@Anshul R@@@@General Body Meeting@@@@{"Name":"General Body Meeting","Location":"LT 1-2 lawns","Date":"27/11/2014","Organiser":"Anshul R","ContactNumber":"36531436046"}
+EVENT@@@@Rahul Hardikar@@@@Christmas Dinner@@@@{"Name":"Christmas Dinner","Location":"Claudy\u0027s, Colva","Date":"25/12/2014","Organiser":"Rahul Hardikar","ContactNumber":"5166234443"}
+EVENT@@@@Rohit Pandey@@@@Old-age home visit@@@@{"Name":"Old-age home visit","Location":"XYZ, Arossim","Date":"31/07/2014","Organiser":"Rohit Pandey","ContactNumber":"6543415435"}
+EVENT@@@@No Won Yu No@@@@Teach India drive@@@@{"Name":"Teach India drive","Location":"Zari slums","Date":"13/10/2014","Organiser":"No Won Yu No","ContactNumber":"86548640640"}
+EVENT@@@@Coolash@@@@Joy of Giving Week@@@@{"Name":"Joy of Giving Week","Location":"BITS Pilani Goa Campus","Date":"02/09/2014","Organiser":"Coolash","ContactNumber":"798498662645"}
+EVENT@@@@Vishnu Nair@@@@Meal of Joy@@@@{"Name":"Meal of Joy","Location":"A Mess, BITS Goa","Date":"25/09/2014","Organiser":"Vishnu Nair","ContactNumber":"1325689489"}
+EVENT@@@@Core 2@@@@Testw@@@@{"Name":"Testw","Location":"B-Dome","Date":"20/12/2014","Organiser":"Core 2","ContactNumber":"5616515656"}
+EVENT@@@@Core 2@@@@Test Evsdva@@@@{"Name":"Test Evsdva","Location":"sdasdvd","Date":"22/12/6666","Organiser":"Core 2","ContactNumber":"5616515656"}

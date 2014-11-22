@@ -184,12 +184,12 @@ public class NirmaanManager {
 					ProjectHead ph = (ProjectHead) p;
 					
 					if( ph != null){ 
-						ph.getProjects(ph.desig, "projectdatabase");
+						ph.getProjects(ph.desig, "projectlist");
 						}
 						else{
 							Gson gson = new Gson();
 							ph = (ProjectHead)gson.fromJson(js, ProjectHead.class);
-							ph.getProjects(ph.desig, "projectdatabase");
+							ph.getProjects(ph.desig, "projectlist");
 						}
 					
 				}
@@ -382,20 +382,20 @@ public class NirmaanManager {
 					Gson gson = new Gson();
 					Volunteer v;
 					v = (Volunteer)gson.fromJson(js, Volunteer.class);
-					v.getProjects(v.desig, "projectdatabase");
+					v.getProjects(v.desig, "projectlist");
 					
 				}
 			});
 			
 			if(p.hasProject){
-			JButton btnGetPrjNamev = new JButton("Get Current Project");
+			JButton btnGetPrjNamev = new JButton("Get Current Projects");
 			frmNirmaanActivityManager.getContentPane().add(btnGetPrjNamev, "4, 10");
 			btnGetPrjNamev.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Gson gson = new Gson();
 					Volunteer v;
 					v = (Volunteer)gson.fromJson(js, Volunteer.class);
-					txtPane.setText(txtPane.getText() + "\nYour current project: " + v.CurrentProject);
+					txtPane.setText(txtPane.getText() + "\nYour current project: " + v.getCurrentProject());
 										
 				}
 			});}

@@ -1,0 +1,8 @@
+MESSAGE@@@@Anshul R@@@@{"Date":"22/11/2014","Body":"This is a message that is to be used for testing. #000","From":"Anshul R","Min_Privilege_Level":1}@@@@1
+MESSAGE@@@@Rohit Pandey@@@@{"Date":"21/11/2014","Body":"This is a message that is to be used for testing. #001","From":"Rohit Pandey","Min_Privilege_Level":2}@@@@2
+MESSAGE@@@@Shatrujit K@@@@{"Date":"23/11/2014","Body":"This is a message that is to be used for testing. #002","From":"Shatrujit K","Min_Privilege_Level":3}@@@@3
+MESSAGE@@@@Anshul R@@@@{"Date":"31/10/2014","Body":"This is a message that is to be used for testing. #003","From":"Anshul R","Min_Privilege_Level":2}@@@@2
+MESSAGE@@@@Vishnu Nair@@@@{"Date":"08/10/2014","Body":"This is a message that is to be used for testing. #004","From":"Vishnu Nair","Min_Privilege_Level":1}@@@@1
+MESSAGE@@@@Aditya Singh@@@@{"Date":"17/10/2014","Body":"This is a message that is to be used for testing. #005","From":"Aditya Singh","Min_Privilege_Level":1}@@@@1
+MESSAGE@@@@Core 2@@@@{"Date":"2014/11/22 21:06:59","Body":"sdafdsc","From":"Core 2","Min_Privilege_Level":3}@@@@3
+MESSAGE@@@@Core 2@@@@{"Date":"2014/11/22 20:52:18","Body":"sdafcdascdf","From":"Core 2","Min_Privilege_Level":2}@@@@2
