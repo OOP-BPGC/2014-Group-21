@@ -1,5 +1,0 @@
-PROJECT@@@@H-Man@@@@K-Ops@@@@{"Name":"K-Ops","Schedule":"T Th F","ProjectHead":"H-Man","numOfVolunteers":15,"EventName":"Event 3"}
-PROJECT@@@@F-Man@@@@EmpOps@@@@{"Name":"EmpOps","Schedule":"MWF","ProjectHead":"F-Man","numOfVolunteers":15,"EventName":"Event 1"}
-PROJECT@@@@E-Man@@@@Working@@@@{"Name":"Working","Schedule":"Su","ProjectHead":"E-Man","numOfVolunteers":15,"EventName":"Event 4"}
-PROJECT@@@@G-Man@@@@SAP@@@@{"Name":"SAP","Schedule":"MTW","ProjectHead":"G-Man","numOfVolunteers":15,"EventName":"Event 2"}
-PROJECT@@@@A-Man@@@@Shiksha@@@@{"Name":"Shiksha","Schedule":"MWSa","ProjectHead":"A-Man","numOfVolunteers":15,"EventName":"Event 5"}
