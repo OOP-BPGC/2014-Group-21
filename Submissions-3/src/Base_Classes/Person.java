@@ -149,7 +149,7 @@ public class Person implements Cloneable{
 			Scanner scanner = new Scanner (System.in);
 			String input = scanner.nextLine();
 			int inputint = 0;
-			if (input == "Y"){
+			if (input.equals("Y")){
 				System.out.println("Enter the Project number from the above list :");
 				inputint = scanner.nextInt();
 				if ( inputint <= i ){
