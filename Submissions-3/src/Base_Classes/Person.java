@@ -152,7 +152,7 @@ public class Person implements Cloneable{
 			if (input.equals("Y")){
 				System.out.println("Enter the Project number from the above list :");
 				String nt = scanner.nextLine();
-//				System.out.println("WHY?");
+//				System.out.println("");
 				inputint = Integer.parseInt(nt);
 //				System.out.println(stringlist.size());
 				if ( inputint <= stringlist.size() ){
@@ -241,7 +241,7 @@ public class Person implements Cloneable{
 		public void addUser (String message){
 			//EXTRACTS THE STRING TO bE SAVED AND THEN APPENDS IT
 			String[] splitstring = message.split("@@@@");
-			if(splitstring[0] == "CREATEUSER"){
+			if(splitstring[0].contains("CREATEUSER")){
 				String[] app = message.split("VEGAS@SAVEG");
 				String str = app[1];
 				this.appendToDatabase("userlist", str);
