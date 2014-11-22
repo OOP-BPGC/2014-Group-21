@@ -8,9 +8,20 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 
+/**
+ * Contains methods to send messages, and retrieve and read recent messages.
+ * @author Anshul Ravichandran
+ */
 
 public class MessageHelper {
 
+	/**
+	 * Sends a message m from Person sender. The message is broadcasted to all users, but only 
+	 * those with the appropriate PRIVILEGELEVEL can read it. 
+	 * @param sender
+	 * @param m
+	 */
+	
 	public static void SendMessage(Person sender, Message m){
 		
 		
@@ -22,6 +33,12 @@ public class MessageHelper {
 			
 	}
 	
+	/**
+	 * Retrieves an array of all messages upto a specified date.
+	 * 
+	 * @param updateDate
+	 * @return ret.toArray()
+	 */
 	
 	//after:2014/11/13 before:2014/11/16
 	public static Message[] RetrieveRecentMessages(String updateDate){

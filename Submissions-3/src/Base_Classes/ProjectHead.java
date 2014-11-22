@@ -153,9 +153,6 @@ public class ProjectHead extends Person {
 		ProjectName = projectName;
 	}
 
-	public void VolunteerProjectRequest() {
-	}
-
 	/**
 	 * Modifies details of the associated project.
 	 */
