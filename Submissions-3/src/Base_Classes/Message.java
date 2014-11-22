@@ -130,7 +130,12 @@ public String encodeMsg(Message m) {
  */
 
 public void decodeMsg(String jstring, Core p){
-	Message m = decodeJson(jstring);
+	Message m;
+	try {
+		m = decodeJson(jstring);
+	} catch (Exception e) {
+		return;
+	}
 	String mTag = m.Tag;
 	String mBody = m.Body;
 	switch(mTag){
