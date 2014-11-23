@@ -3,9 +3,9 @@ INPUT:
 Enter your name (Full name, case sensitive) :
 ProjectHead3
 Enter your username (case sensitive) :
-thedjofsis@gmail.com
+proj3@gmail.com
 Enter your password (case sensitive) :
-AsDfGhJk
+proj3p
 
 OUTPUT:
 Name and credential match found. Loading user details...
