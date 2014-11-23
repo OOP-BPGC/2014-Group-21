@@ -1,49 +1,36 @@
-1. Login
+1.1 Login as projecthead
 INPUT:
 Enter your name (Full name, case sensitive) :
-ProjectHead3
+ProjectHead1
 Enter your username (case sensitive) :
-proj3@gmail.com
+projmanager1.oopnirmaan@gmail.com
 Enter your password (case sensitive) :
-proj3p
+freshnoobs
 
 OUTPUT:
 Name and credential match found. Loading user details...
 
+1.2 Login as core
 INPUT:
 Enter your name (Full name, case sensitive) :
-Volunteer1
+Core 1
 Enter your username (case sensitive) :
-vol1@gmail.com
+person1.oopnirmaan@gmail.com
 Enter your password (case sensitive) :
-vol2p
+apples_123
 
 OUTPUT:
-Please enter the correct details. Tries left : 3
+Name and credential match found. Loading user details...
 
+1.3 Login as Volunteer
 INPUT:
-Enter your name (Full name, case sensitive) :Volunteer1
-Enter your username (case sensitive) :vol1@gmail.com
-Enter your password (case sensitive) :vol2
+Enter your name (Full name, case sensitive) : Volunteer 1
+Enter your username (case sensitive) :person3.oopnirmaan@gmail.com
+Enter your password (case sensitive) yellowsky
 
 OUTPUT:
-Please enter the correct details. Tries left : 2
+Name and credential match found. Loading user details...
 
-INPUT:
-Enter your name (Full name, case sensitive) :Volunteer1
-Enter your username (case sensitive) :vol1@gmail.com
-Enter your password (case sensitive) :voln1
-
-OUTPUT:
-Please enter the correct details. Tries left : 1
-
-INPUT:
-Enter your name (Full name, case sensitive) :Volunteer1
-Enter your username (case sensitive) :vol1@gmail.com
-Enter your password (case sensitive) :voln1p
-
-OUTPUT:
-No matches found... Exiting...
 
 2. Check Messages
 INPUT:
